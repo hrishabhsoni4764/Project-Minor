@@ -8,7 +8,7 @@ public class HookshotController : MonoBehaviour {
     [HideInInspector] public AltWeapons altweapons;
     [HideInInspector] public float shootingSpeed = 0.4f;
 
-    private float shootingLength = 6f;
+    public float shootingLength = 6f;
     private float retractingSpeed = 0.4f;
 
     private Transform hookshotObj;

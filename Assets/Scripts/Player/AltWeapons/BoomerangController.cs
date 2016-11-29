@@ -9,7 +9,7 @@ public class BoomerangController : MonoBehaviour {
     [HideInInspector] public AltWeapons altweapons;
 
     private float shootingSpeed = 0.3f;
-    private float shootingLength = 7f;
+    public float shootingLength = 7f;
     private float retractingSpeed = 0.3f;
 
     private Transform boomerangObj;
