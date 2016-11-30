@@ -14,6 +14,7 @@ public class CameraPanTrigger : MonoBehaviour {
         if (other.GetComponent<ThirdPersonController>() && !isTriggered) {
             cameraM.cameraState = CameraState.Pan;
             isTriggered = true;
+            gameObject.SetActive(false);
         }
     }
 }
