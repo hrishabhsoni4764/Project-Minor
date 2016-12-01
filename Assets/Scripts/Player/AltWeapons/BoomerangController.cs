@@ -29,6 +29,7 @@ public class BoomerangController : MonoBehaviour {
                         altweapons.canUseAltWeapon = false;
                         altweapons.swordAndShieldShowing = false;
                         altweapons.tpc.canMove = false;
+                        altweapons.tpc.canLookAround = false;
                         currentState = BoomerangState.Shoot;
                     }
                     break;
@@ -65,6 +66,7 @@ public class BoomerangController : MonoBehaviour {
             altweapons.canUseAltWeapon = true;
             altweapons.swordAndShieldShowing = true;
             altweapons.tpc.canMove = true;
+            altweapons.tpc.canLookAround = true;
             Destroy(boomerangObj.gameObject);
             currentState = BoomerangState.Idle;
         }
@@ -73,6 +75,7 @@ public class BoomerangController : MonoBehaviour {
             altweapons.canUseAltWeapon = true;
             altweapons.swordAndShieldShowing = true;
             altweapons.tpc.canMove = true;
+            altweapons.tpc.canLookAround = true;
             currentState = BoomerangState.Idle;
             Destroy(boomerangObj.gameObject);
         }

@@ -5,9 +5,9 @@ public class Inventory : MonoBehaviour {
 
     public enum SelectedAltweapon { Hookshot, Boomerang, Bow };
 
-    private bool inventoryIsShowing;
+    [HideInInspector] public bool inventoryIsShowing;
     private bool hookshotIsShowing, boomerangIsShowing, bowIsShowing;
-    private AltWeapons altWeapons;
+    [HideInInspector] public AltWeapons altWeapons;
     private GameObject fadeOverlay;
     private GameObject inventory;
 
@@ -26,25 +26,7 @@ public class Inventory : MonoBehaviour {
     }
 	
 	void Update () {
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                inventoryIsShowing = !inventoryIsShowing;
-                altWeapons.canUseAltWeapon = !altWeapons.canUseAltWeapon;
-            }
-
-            if (inventoryIsShowing)
-            {
-                fadeOverlay.SetActive(true);
-                inventory.SetActive(true);
-                Time.timeScale = 0;
-                SelectAlt();
-                AltweaponsShowing();
-            }
-            else {
-                fadeOverlay.SetActive(false);
-                inventory.SetActive(false);
-                Time.timeScale = 1;
-            }
+     
 	}
 
     void AltweaponsShowing() {

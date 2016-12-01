@@ -22,13 +22,13 @@ public class Health : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            playerB.RestoreHealth(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9)) {
-            TakeDamage(-1);
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha0))
+        //{
+        //    playerB.RestoreHealth(1);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Alpha9)) {
+        //    TakeDamage(-1);
+        //}
     }
 
     void CheckHealthAmount() {

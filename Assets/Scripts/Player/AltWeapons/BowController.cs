@@ -30,6 +30,7 @@ public class BowController : MonoBehaviour {
                         altweapons.canUseAltWeapon = false;
                         altweapons.swordAndShieldShowing = false;
                         altweapons.tpc.canMove = false;
+                        altweapons.tpc.canLookAround = false;
                         currentState = BowState.Shoot;
                     }
                     break;
@@ -50,6 +51,7 @@ public class BowController : MonoBehaviour {
             altweapons.canUseAltWeapon = true;
             altweapons.swordAndShieldShowing = true;
             altweapons.tpc.canMove = true;
+            altweapons.tpc.canLookAround = true;
             Destroy(bowObj.gameObject);
             currentState = BowState.Idle;
         }

@@ -30,6 +30,7 @@ public class HookshotController : MonoBehaviour {
                         altweapons.canUseAltWeapon = false;
                         altweapons.swordAndShieldShowing = false;
                         altweapons.tpc.canMove = false;
+                        altweapons.tpc.canLookAround = false;
                         currentState = HookshotState.Shoot;
                     }
                     break;
@@ -70,6 +71,7 @@ public class HookshotController : MonoBehaviour {
             altweapons.canUseAltWeapon = true;
             altweapons.swordAndShieldShowing = true;
             altweapons.tpc.canMove = true;
+            altweapons.tpc.canLookAround = true;
             currentState = HookshotState.Idle;
             Destroy(hookshotObj.gameObject);
         }
@@ -78,6 +80,7 @@ public class HookshotController : MonoBehaviour {
             altweapons.canUseAltWeapon = true;
             altweapons.swordAndShieldShowing = true;
             altweapons.tpc.canMove = true;
+            altweapons.tpc.canLookAround = true;
             currentState = HookshotState.Idle;
             Destroy(hookshotObj.gameObject);
         }

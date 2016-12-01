@@ -15,7 +15,8 @@ public class AltWeapons : MonoBehaviour {
     public enum WeaponType {
         Hookshot,
         Boomerang,
-        Bow
+        Bow,
+        Nothing
     }
     [HideInInspector] public WeaponType weaponType;
 
@@ -58,6 +59,11 @@ public class AltWeapons : MonoBehaviour {
             case WeaponType.Bow:
                 bow.active = true;
                 hookshot.active = false;
+                boomerang.active = false;
+                break;
+            case WeaponType.Nothing:
+                hookshot.active = false;
+                bow.active = false;
                 boomerang.active = false;
                 break;
         }
