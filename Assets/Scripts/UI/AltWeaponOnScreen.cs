@@ -17,6 +17,7 @@ public class AltWeaponOnScreen : MonoBehaviour {
         altWeaponUITwo = gameObject.transform.GetChild(1).GetComponent<AltWeaponUITwo>();
         altWeaponUIOne = gameObject.transform.GetChild(2).GetComponent<AltWeaponUIOne>();
         altWeaponUIZero = gameObject.transform.GetChild(2).GetComponent<AltWeaponUIZero>();
+        altweaponsOnScreen = AltWeaponsOnScreen.One;
     }
 
     void Update() {

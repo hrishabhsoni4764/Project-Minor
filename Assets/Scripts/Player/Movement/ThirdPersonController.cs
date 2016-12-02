@@ -80,7 +80,8 @@ public class ThirdPersonController : MonoBehaviour {
             Destroy(hookedTarget.gameObject);
             hookshotCtrl.altweapons.canUseAltWeapon = true;
             hookshotCtrl.altweapons.swordAndShieldShowing = true;
-            hookshotCtrl.altweapons.tpc.canMove = true;
+            canMove = true;
+            canLookAround = true;
             hookshotCtrl.currentState = HookshotState.Idle;
         }
     }
