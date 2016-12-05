@@ -5,6 +5,7 @@ public class CameraPanTrigger : MonoBehaviour {
 
     private CameraMovement cameraM;
     private bool isTriggered;
+    public int targetNumber;
 
 	void Start () {
         cameraM = FindObjectOfType<CameraMovement>();

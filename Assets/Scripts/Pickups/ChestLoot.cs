@@ -7,7 +7,7 @@ public class ChestLoot : MonoBehaviour {
 
     public LootTypes lootType;
     public string lootText;
-    private bool chestLooted;
+    [HideInInspector] public bool chestLooted;
     private UIKey uiKey;
 
     void Start() {
@@ -20,30 +20,21 @@ public class ChestLoot : MonoBehaviour {
         {
             if (other.GetComponent<ThirdPersonController>())
             {
-                GameObject buttonPrompt = GameManager.instance.buttonPrompt;
-                buttonPrompt.SetActive(true);
-                buttonPrompt.GetComponentInChildren<Text>().text = ("Press O to Open");
                 if (Input.GetKeyDown(KeyCode.O))
                 {
                     switch (lootType)
                     {
                         case LootTypes.Key:
-                            buttonPrompt = GameManager.instance.buttonPrompt;
-                            buttonPrompt.SetActive(false);
                             StartCoroutine("DialogueTimer", lootText);
                             UIKey.keyAmount++;
                             chestLooted = true;
                             break;
                         case LootTypes.Bosskey:
-                            buttonPrompt = GameManager.instance.buttonPrompt;
-                            buttonPrompt.SetActive(false);
                             StartCoroutine("DialogueTimer", lootText);
                             uiKey.gotBossKey = true;
                             chestLooted = true;
                             break;
                         case LootTypes.AltWeapon:
-                            buttonPrompt = GameManager.instance.buttonPrompt;
-                            buttonPrompt.SetActive(false);
                             StartCoroutine("DialogueTimer", lootText);
                             FindObjectOfType<AltWeaponOnScreen>().altweaponsOnScreen = AltWeaponsOnScreen.Two;
                             chestLooted = true;
@@ -51,15 +42,6 @@ public class ChestLoot : MonoBehaviour {
                     }
                 }
             }
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<ThirdPersonController>())
-        {
-            GameObject buttonPrompt = GameManager.instance.buttonPrompt;
-            buttonPrompt.SetActive(false);
         }
     }
 
