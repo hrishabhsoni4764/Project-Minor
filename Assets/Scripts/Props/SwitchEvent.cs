@@ -2,40 +2,54 @@
 using System.Collections;
 
     public enum TriggerCase { Single, Multi }
-    public enum ObjectCase { Single, Multi }
 public class SwitchEvent : MonoBehaviour {
 
+    private CameraMovement cameraM;
+    private bool isTriggered;
     [HideInInspector] public bool switchEventActivate;
 
-    [Header("Trigger Type")]
+    [Header("-Event Panning-")]
+    public Transform target;
+    public int height;
+    public int panPause;
+    public int animPause;
+
+    [Header("-Trigger Type-")]
     public TriggerCase triggerCase;
     public int numberKey_multi;
-    [Header("Prefabs")]
-    public ObjectCase objectCase;
+
+    [Header("-Prefabs-")]
     public GameObject objectToTrigger;
-    public GameObject objectToTrigger2;
-	
+
+    void Start() {
+        cameraM = FindObjectOfType<CameraMovement>();
+    }
+
 	void Update () {
         if (switchEventActivate) {
-            switch (triggerCase)
+            if (!isTriggered)
             {
-                case TriggerCase.Single:
-                    switch (objectCase)
-                    {
-                        case ObjectCase.Single:
-                            objectToTrigger.GetComponent<DoorEvent>().active = true;
-                            break;
-                        case ObjectCase.Multi:
-                            objectToTrigger.GetComponent<DoorEvent>().active = true;
-                            objectToTrigger2.GetComponent<DoorEvent>().active = true;
-                            break;
-                    }
-                    break;
-                case TriggerCase.Multi:
-                    objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
-                    break;
+                isTriggered = true;
+                StartCoroutine("WaitForPan");
             }
         }
 	}
+
+    IEnumerator WaitForPan() {
+        cameraM.panTarget = target;
+        cameraM.panHeight = height;
+        cameraM.panPause = panPause;
+        cameraM.cameraState = CameraState.Pan;
+        yield return new WaitForSeconds(animPause);
+        switch (triggerCase)
+        {
+            case TriggerCase.Single:
+                objectToTrigger.GetComponent<DoorEvent>().active = true;
+                break;
+            case TriggerCase.Multi:
+                objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
+                break;
+        }
+    }
 
 }

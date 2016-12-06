@@ -12,8 +12,8 @@ public class EnterTransitionTrigger : MonoBehaviour {
     private ThirdPersonController tpc;
     private UIKey uiKey;
     [Header("-Select-")]
-    public EnablePrompt enablePrompt;
-    public LockedDoor lockedDoor;
+    public bool lockedDoor;
+    public bool enablePrompt;
     public TransitionToScene transitionToScene;
     [Header("-Transforms-")]
     public Transform posToMoveTo;
@@ -30,10 +30,9 @@ public class EnterTransitionTrigger : MonoBehaviour {
     {
         if (other.GetComponent<ThirdPersonController>())
         {
-            switch (lockedDoor)
             {
-                case LockedDoor.Yes:
-                    if (this.CompareTag("BossDoor")){
+                if (lockedDoor) {
+                    if (this.CompareTag("BossDoor")) {
                         if (uiKey.gotBossKey)
                         {
                             uiKey.gotBossKey = false;
@@ -60,11 +59,10 @@ public class EnterTransitionTrigger : MonoBehaviour {
                         }
                     }
 
-                    break;
-                case LockedDoor.No:
-                    switch (enablePrompt)
-                    {
-                        case EnablePrompt.On:
+                }
+                else {
+                    if(enablePrompt)
+                        {
                             GameObject buttonPrompt = GameManager.instance.buttonPrompt;
                             buttonPrompt.SetActive(true);
                             buttonPrompt.GetComponentInChildren<Text>().text = (buttonTextInput);
@@ -73,18 +71,17 @@ public class EnterTransitionTrigger : MonoBehaviour {
                                 tpc.canMove = false;
                                 StartCoroutine("EnterHouseDelay");
                             }
-                            break;
-                        case EnablePrompt.Off:
+                     } else {
                             tpc.canMove = false;
                             StartCoroutine("EnterHouseDelay");
-                            break;
+                            
                     }
-                    break;
+                        
+                }
             }
-            
-            
         }
     }
+
 
     void OnTriggerExit(Collider other)
     {
@@ -113,3 +110,4 @@ public class EnterTransitionTrigger : MonoBehaviour {
         }
     }
 }
+

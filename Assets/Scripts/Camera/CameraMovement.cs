@@ -7,8 +7,9 @@ public enum CameraState { Default, Left, Right, Behind, Pan, Static }
 public class CameraMovement : MonoBehaviour
 {
     [Header ("-Pan Options-")]
-    public Transform panTarget;
-    public float panHeight;
+    [HideInInspector] public float panHeight;
+    [HideInInspector] public int panPause;
+    [HideInInspector] public Transform panTarget;
 
     [Header("-Animations-")]
     public Animator blackBarsAnim;
@@ -19,6 +20,7 @@ public class CameraMovement : MonoBehaviour
     private Transform currentCameraTrans;
     private Transform playerTrans;
     private ThirdPersonController tpc;
+    private CameraPanTrigger cpt;
     private CloseDoor cameraPT;
 
 
@@ -27,7 +29,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Transform cameraPosDefault, overShoulderRight, overShoulderLeft, behindLookup;
     [SerializeField] private Transform cameraTargetDefault, cameraTargetFront, cameraTargetUp;
 
-    private CameraState _cameraState;
+    public CameraState _cameraState;
     public CameraState cameraState {
         get
         {
@@ -80,6 +82,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         tpc = FindObjectOfType<ThirdPersonController>();
+        cpt = FindObjectOfType<CameraPanTrigger>();
         cameraPT = FindObjectOfType<CloseDoor>();
 
         playerTrans = tpc.transform;
@@ -148,12 +151,12 @@ public class CameraMovement : MonoBehaviour
         {
             blackBarsAnim.SetInteger("blackBarsInt", 2);
             bossB.SetActive(true);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(panPause);
             cameraState = CameraState.Default;
         }
         else {
             blackBarsAnim.SetInteger("blackBarsInt", 2);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(panPause);
             cameraState = CameraState.Default;
         }
     }

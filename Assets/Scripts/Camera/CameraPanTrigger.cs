@@ -5,7 +5,9 @@ public class CameraPanTrigger : MonoBehaviour {
 
     private CameraMovement cameraM;
     private bool isTriggered;
-    public int targetNumber;
+    public Transform target;
+    public int height;
+    public int pause;
 
 	void Start () {
         cameraM = FindObjectOfType<CameraMovement>();
@@ -13,6 +15,9 @@ public class CameraPanTrigger : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.GetComponent<ThirdPersonController>() && !isTriggered) {
+            cameraM.panTarget = target;
+            cameraM.panHeight = height;
+            cameraM.panPause = pause;
             cameraM.cameraState = CameraState.Pan;
             isTriggered = true;
             gameObject.SetActive(false);

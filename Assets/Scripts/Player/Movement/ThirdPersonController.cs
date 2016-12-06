@@ -4,7 +4,6 @@ using System.Collections;
 public class ThirdPersonController : MonoBehaviour {
 
     /*[HideInInspector]*/ public float defaultSpeed;
-    /*[HideInInspector]*/ public float sprintSpeed;
     [HideInInspector] public float currentSpeed;
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool canLookAround = true;
@@ -24,7 +23,7 @@ public class ThirdPersonController : MonoBehaviour {
         hookshotCtrl = GetComponent<HookshotController>();
     }
 
-	void Update ()
+    void Update ()
     {
         GetInput();
     }
@@ -39,9 +38,7 @@ public class ThirdPersonController : MonoBehaviour {
         if (canMove)
         {
             isWalking = moveX != 0 || moveZ != 0;
-            transform.position += new Vector3(moveX, 0f, moveZ).normalized * currentSpeed * Time.deltaTime;
-
-            Sprinting();
+            transform.position += new Vector3(moveX, 0f, moveZ).normalized * defaultSpeed * Time.deltaTime;
         }
         if (canLookAround) {
             Vector2 tempDir = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
@@ -59,17 +56,6 @@ public class ThirdPersonController : MonoBehaviour {
     {
         moveX = Input.GetAxis("Horizontal");
         moveZ = Input.GetAxis("Vertical");
-    }
-
-    void Sprinting() {
-        if (Input.GetKey(KeyCode.LeftShift) && isWalking)
-        {
-            currentSpeed = sprintSpeed;
-        }
-        else
-        {
-            currentSpeed = defaultSpeed;
-        }
     }
 
     public void TowardsHookshotTarget(Transform hookedTarget) {
