@@ -4,26 +4,18 @@ using UnityEngine.UI;
 
 public class AltWeaponUIOne : MonoBehaviour {
 
-    private Inventory inventory;
+    private AltWeapons altWeapons;
     [HideInInspector] public bool active;
 
 	void Start () {
-        inventory = FindObjectOfType<Inventory>();
+        altWeapons = FindObjectOfType<AltWeapons>();
 	}
 	
 	void Update () {
-        if (active)
-        {
-            if (!inventory.inventoryIsShowing)
-            {
-                UpdateImages();
-            }
+        if (active) {
+            altWeapons.weaponType = AltWeapons.WeaponType.Boomerang;
+            transform.GetChild(7).GetComponent<Image>().sprite = transform.GetChild(5).GetComponent<Image>().sprite;
+            transform.GetChild(7).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
         }
-    }
-
-    void UpdateImages() {
-        inventory.altWeapons.weaponType = AltWeapons.WeaponType.Boomerang;
-        gameObject.transform.GetChild(0).GetComponent<Image>().sprite = inventory.altweaponIcons[1].GetComponent<Image>().sprite;
-        gameObject.transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
     }
 }

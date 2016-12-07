@@ -4,11 +4,10 @@ using UnityEngine.UI;
 
 public class VillagerBehaviour : MonoBehaviour {
 
-    public string dialogueTextInput, buttonTextInput;
+    public string dialogueTextInput;
     public Animator blackBarsAnim;
 
     private GameObject dialoguePrompt;
-    private GameObject buttonPrompt;
     private ThirdPersonController player;
     private CameraMovement cameraM;
 
@@ -16,7 +15,6 @@ public class VillagerBehaviour : MonoBehaviour {
 
     void Start () {
         dialoguePrompt = GameManager.instance.dialoguePrompt;
-        buttonPrompt = GameManager.instance.buttonPrompt;
         player = FindObjectOfType<ThirdPersonController>();
         cameraM = FindObjectOfType<CameraMovement>();
 	}
@@ -30,21 +28,20 @@ public class VillagerBehaviour : MonoBehaviour {
     {
         if (isInRange)
         {
-            if (Input.GetKeyDown(KeyCode.O) && !isTalking)
+            if (Input.GetButtonDown("Interact") && !isTalking)
             {
                 player.canMove = false;
                 isTalking = true;
-                buttonPrompt.SetActive(false);
                 ActivateDialogueSettings();
             }
-            else if (Input.GetKeyDown(KeyCode.O) && isTalking)
+            else if (Input.GetButtonDown("Interact") && isTalking)
             {
                 player.canMove = true;
                 isTalking = false;
                 dialoguePrompt.SetActive(false);
                 if (isInRange)
                 {
-                    activateButtonSettings();
+                    ActivateDialogueSettings();
                 }
             }
             CutsceneCamera();
@@ -61,7 +58,7 @@ public class VillagerBehaviour : MonoBehaviour {
     {
         if (other.GetComponent<ThirdPersonController>()) 
         {
-            activateButtonSettings();
+            
             isInRange = true;
             isLooking = true;
         }
@@ -71,15 +68,8 @@ public class VillagerBehaviour : MonoBehaviour {
     {
         if (other.GetComponent<ThirdPersonController>())
         {
-            buttonPrompt.SetActive(false);
             isInRange = false;
         }
-    }
-
-    void activateButtonSettings()
-    {
-        buttonPrompt.SetActive(true);
-        buttonPrompt.GetComponentInChildren<Text>().text = buttonTextInput;
     }
 
     void CutsceneCamera() {

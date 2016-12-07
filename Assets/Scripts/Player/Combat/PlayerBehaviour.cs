@@ -59,7 +59,7 @@ public class PlayerBehaviour : MonoBehaviour {
     }
 
     void Attack() {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Sword"))
         {
             tpc.gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
             Animator sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Animator>();
@@ -69,7 +69,7 @@ public class PlayerBehaviour : MonoBehaviour {
     }
 
     void ShieldUp() {
-        shieldIsUp = Input.GetMouseButton(1);
+        shieldIsUp = Input.GetAxis("Shield") > 0f;
         if (shieldIsUp)
         {
             shield.SetBool("shieldIsUp", true);

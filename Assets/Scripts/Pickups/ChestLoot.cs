@@ -34,7 +34,7 @@ public class ChestLoot : MonoBehaviour {
         {
             if (other.GetComponent<ThirdPersonController>())
             {
-                if (Input.GetKeyDown(KeyCode.O))
+                if (Input.GetButtonDown("Interact"))
                 {
                     switch (lootType)
                     {

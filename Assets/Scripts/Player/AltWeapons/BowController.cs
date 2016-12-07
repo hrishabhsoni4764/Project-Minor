@@ -23,7 +23,7 @@ public class BowController : MonoBehaviour {
             switch (currentState)
             {
                 case BowState.Idle:
-                    if (Input.GetKeyDown(KeyCode.Space) && altweapons.canUseAltWeapon)
+                    if (Input.GetButtonDown("AltWeapon") && altweapons.canUseAltWeapon)
                     {
                         GameObject altWeaponInUse = Instantiate(altweapons.altWeapons[2], altweapons.altWeaponPos, Quaternion.LookRotation(transform.forward)) as GameObject;
                         bowObj = altWeaponInUse.transform;

@@ -5,49 +5,46 @@ using UnityEngine.UI;
 public enum AltWeaponInUseTwo { Hookshot, Boomerang }
 public class AltWeaponUITwo : MonoBehaviour {
 
-    private Inventory inventory;
+    private AltWeapons altWeapons;
     private AltWeaponInUseTwo altWeaponInUse;
     [HideInInspector] public bool active;
 
 	void Start () {
-        inventory = FindObjectOfType<Inventory>();
+        altWeapons = FindObjectOfType<AltWeapons>();
 	}
 	
 	void Update () {
         if (active)
         {
-            if (!inventory.inventoryIsShowing)
-            {
-                UpdateImages();
-            }
+            UpdateImages();
         }
     }
 
     void UpdateImages() {
+        Color transA = transform.GetChild(4).GetComponent<Image>().color;
+        Color transB = transform.GetChild(5).GetComponent<Image>().color;
         switch (altWeaponInUse)
         {
             case AltWeaponInUseTwo.Hookshot:
-                inventory.altWeapons.weaponType = AltWeapons.WeaponType.Hookshot;
-                gameObject.transform.GetChild(0).GetComponent<Image>().sprite = inventory.altweaponIcons[1].GetComponent<Image>().sprite;
-                gameObject.transform.GetChild(1).GetComponent<Image>().sprite = inventory.altweaponIcons[0].GetComponent<Image>().sprite;
-                if (inventory.altWeapons.canUseAltWeapon)
+                altWeapons.weaponType = AltWeapons.WeaponType.Hookshot;
+                transform.GetChild(7).GetComponent<Image>().sprite = transform.GetChild(4).GetComponent<Image>().sprite;
+                transform.GetChild(7).GetComponent<Image>().color = new Color(1f,1f,1f,1f);
+                transA = new Color(1f, 1f, 1f, 1f);
+                transB = new Color(1f, 1f, 1f, 0.3f);
+                if (Input.GetAxis("D-pad(Horizontal)") < 0 && altWeapons.canUseAltWeapon)
                 {
-                    if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetAxis("Mouse ScrollWheel") < 0)
-                    {
-                        altWeaponInUse = AltWeaponInUseTwo.Boomerang;
-                    }
+                    altWeapons.weaponType = AltWeapons.WeaponType.Boomerang;
                 }
                 break;
             case AltWeaponInUseTwo.Boomerang:
-                inventory.altWeapons.weaponType = AltWeapons.WeaponType.Boomerang;
-                gameObject.transform.GetChild(0).GetComponent<Image>().sprite = inventory.altweaponIcons[0].GetComponent<Image>().sprite;
-                gameObject.transform.GetChild(1).GetComponent<Image>().sprite = inventory.altweaponIcons[1].GetComponent<Image>().sprite;
-                if (inventory.altWeapons.canUseAltWeapon)
+                altWeapons.weaponType = AltWeapons.WeaponType.Boomerang;
+                transform.GetChild(7).GetComponent<Image>().sprite = transform.GetChild(5).GetComponent<Image>().sprite;
+                transform.GetChild(7).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+                transA = new Color(1f, 1f, 1f, 0.3f);
+                transB = new Color(1f, 1f, 1f, 1f);
+                if (Input.GetAxis("D-pad(Horizontal)") > 0 && altWeapons.canUseAltWeapon)
                 {
-                    if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetAxis("Mouse ScrollWheel") < 0 || Input.GetAxis("Mouse ScrollWheel") > 0)
-                    {
-                        altWeaponInUse = AltWeaponInUseTwo.Hookshot;
-                    }
+                    altWeapons.weaponType = AltWeapons.WeaponType.Hookshot;
                 }
                 break;
         }

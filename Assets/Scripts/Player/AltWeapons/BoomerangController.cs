@@ -23,7 +23,7 @@ public class BoomerangController : MonoBehaviour {
             switch (currentState)
             {
                 case BoomerangState.Idle:
-                    if (Input.GetKeyDown(KeyCode.Space) && altweapons.canUseAltWeapon) {
+                    if (Input.GetButtonDown("AltWeapon") && altweapons.canUseAltWeapon) {
                         GameObject altWeaponInUse = Instantiate(altweapons.altWeapons[0], altweapons.altWeaponPos, Quaternion.identity) as GameObject;
                         boomerangObj = altWeaponInUse.transform;
                         altweapons.canUseAltWeapon = false;

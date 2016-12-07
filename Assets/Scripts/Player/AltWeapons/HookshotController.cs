@@ -23,7 +23,7 @@ public class HookshotController : MonoBehaviour {
             switch (currentState)
             {
                 case HookshotState.Idle:
-                    if (Input.GetKeyDown(KeyCode.Space) && altweapons.canUseAltWeapon)
+                    if (Input.GetButtonDown("AltWeapon") && altweapons.canUseAltWeapon)
                     {
                         GameObject altWeaponInUse = Instantiate(altweapons.altWeapons[1], altweapons.altWeaponPos, Quaternion.identity) as GameObject;
                         hookshotObj = altWeaponInUse.transform;
