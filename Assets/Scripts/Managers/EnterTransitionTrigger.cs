@@ -18,7 +18,6 @@ public class EnterTransitionTrigger : MonoBehaviour {
     [Header("-Transforms-")]
     public Transform posToMoveTo;
     [Header ("-Text Input-")]
-    public string buttonTextInput;
     public string transitionTo;
 
     void Start() {
@@ -32,20 +31,23 @@ public class EnterTransitionTrigger : MonoBehaviour {
         {
             {
                 if (lockedDoor) {
-                    if (this.CompareTag("BossDoor")) {
+                    if (this.CompareTag("BossDoor"))
+                    {
                         if (uiKey.gotBossKey)
                         {
                             uiKey.gotBossKey = false;
                             tpc.canMove = false;
                             StartCoroutine("EnterHouseDelay");
                         }
-                        else {
-                            GameObject buttonPrompt = GameManager.instance.buttonPrompt;
-                            buttonPrompt.SetActive(true);
-                            buttonPrompt.GetComponentInChildren<Text>().text = ("Door is Locked");
+                        else
+                        {
+                            GameObject dialoguePrompt = GameManager.instance.dialoguePrompt;
+                            dialoguePrompt.SetActive(true);
+                            dialoguePrompt.GetComponentInChildren<Text>().text = ("Door is Locked...");
                         }
                     }
-                    else {
+                    else
+                    {
                         if (UIKey.keyAmount > 0)
                         {
                             UIKey.keyAmount--;
@@ -53,42 +55,29 @@ public class EnterTransitionTrigger : MonoBehaviour {
                             StartCoroutine("EnterHouseDelay");
                         }
                         else {
-                            GameObject buttonPrompt = GameManager.instance.buttonPrompt;
-                            buttonPrompt.SetActive(true);
-                            buttonPrompt.GetComponentInChildren<Text>().text = ("Door is Locked");
+                            GameObject dialoguePrompt = GameManager.instance.dialoguePrompt;
+                            dialoguePrompt.SetActive(true);
+                            dialoguePrompt.GetComponentInChildren<Text>().text = ("Door is Locked...");
                         }
                     }
-
                 }
                 else {
                     if(enablePrompt)
+                    {
+                        if (Input.GetButtonDown("Interact"))
                         {
-                            GameObject buttonPrompt = GameManager.instance.buttonPrompt;
-                            buttonPrompt.SetActive(true);
-                            buttonPrompt.GetComponentInChildren<Text>().text = (buttonTextInput);
-                            if (Input.GetKeyDown(KeyCode.O))
-                            {
-                                tpc.canMove = false;
-                                StartCoroutine("EnterHouseDelay");
-                            }
-                     } else {
                             tpc.canMove = false;
                             StartCoroutine("EnterHouseDelay");
-                            
+                        }
+                    }
+                    else
+                    {
+                        tpc.canMove = false;
+                        StartCoroutine("EnterHouseDelay");
                     }
                         
                 }
             }
-        }
-    }
-
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<ThirdPersonController>())
-        {
-            GameObject buttonPrompt = GameManager.instance.buttonPrompt;
-            buttonPrompt.SetActive(false);
         }
     }
 

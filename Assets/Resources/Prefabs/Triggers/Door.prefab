@@ -103,8 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedDoor: 0
-  enablePrompt: 1
+  enablePrompt: 0
   transitionToScene: 0
   posToMoveTo: {fileID: 0}
-  buttonTextInput: 
-  transitionTo: Dungeon_StartRoom
+  transitionTo: 

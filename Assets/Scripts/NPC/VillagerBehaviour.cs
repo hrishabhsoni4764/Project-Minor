@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class VillagerBehaviour : MonoBehaviour {
 
     public string dialogueTextInput;
-    public Animator blackBarsAnim;
 
     private GameObject dialoguePrompt;
     private ThirdPersonController player;
+    private Interactible interactible;
     private CameraMovement cameraM;
 
     [HideInInspector] public bool isLooking = false, isTalking = false, isInRange = false;
@@ -16,6 +16,7 @@ public class VillagerBehaviour : MonoBehaviour {
     void Start () {
         dialoguePrompt = GameManager.instance.dialoguePrompt;
         player = FindObjectOfType<ThirdPersonController>();
+        interactible = GetComponent<Interactible>();
         cameraM = FindObjectOfType<CameraMovement>();
 	}
 
@@ -32,33 +33,36 @@ public class VillagerBehaviour : MonoBehaviour {
             {
                 player.canMove = false;
                 isTalking = true;
-                ActivateDialogueSettings();
+                interactible.buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
+                ActivateDialogueSettings(1);
             }
             else if (Input.GetButtonDown("Interact") && isTalking)
             {
                 player.canMove = true;
                 isTalking = false;
-                dialoguePrompt.SetActive(false);
-                if (isInRange)
-                {
-                    ActivateDialogueSettings();
-                }
+                interactible.buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 1);
+                ActivateDialogueSettings(0);
             }
             CutsceneCamera();
         }
     }
 
-    void ActivateDialogueSettings()
+    void ActivateDialogueSettings(int setTrigger)
     {
-        dialoguePrompt.SetActive(true);
-        dialoguePrompt.GetComponentInChildren<Text>().text = (dialogueTextInput);
+        interactible.buttonCanvas.transform.GetChild(1).GetComponent<Animator>().SetInteger("speechBubble", setTrigger);
+        if (setTrigger == 1)
+        {
+            interactible.buttonCanvas.transform.GetChild(1).GetComponentInChildren<Text>().text = (dialogueTextInput);
+        }
+        else {
+            interactible.buttonCanvas.transform.GetChild(1).GetComponentInChildren<Text>().text = null;
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ThirdPersonController>()) 
+        if (other.GetComponent<ThirdPersonController>() && !other.GetComponent<SphereCollider>()) 
         {
-            
             isInRange = true;
             isLooking = true;
         }
@@ -66,7 +70,7 @@ public class VillagerBehaviour : MonoBehaviour {
 
         void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<ThirdPersonController>())
+        if (other.GetComponent<ThirdPersonController>() && !other.GetComponent<SphereCollider>())
         {
             isInRange = false;
         }
