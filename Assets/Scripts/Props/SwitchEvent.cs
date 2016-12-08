@@ -35,7 +35,7 @@ public class SwitchEvent : MonoBehaviour {
         }
 	}
 
-    IEnumerator WaitForPan() {
+    public IEnumerator WaitForPan() {
         cameraM.panTarget = target;
         cameraM.panHeight = height;
         cameraM.panPause = panPause;

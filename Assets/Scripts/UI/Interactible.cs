@@ -25,8 +25,8 @@ public class Interactible : MonoBehaviour {
     void Update() {
         if (buttonCanvas != null)
         {
-            buttonCanvas.transform.GetChild(0).forward = Camera.main.transform.forward * -1;
-            buttonCanvas.transform.GetChild(1).forward = Camera.main.transform.forward * -1;
+            buttonCanvas.transform.FindChild("Image").forward = Camera.main.transform.forward * -1;
+            buttonCanvas.transform.FindChild("Speechbubble").forward = Camera.main.transform.forward * -1;
         }
     }
 

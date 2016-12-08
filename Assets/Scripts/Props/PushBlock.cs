@@ -16,7 +16,7 @@ public class PushBlock : MonoBehaviour {
 
     void Update() {
         if (Input.GetButtonUp("Interact")) {
-            transform.SetParent(null);
+            transform.parent.SetParent(null);
             altweapons.swordAndShieldShowing = true;
             altweapons.canUseAltWeapon = true;
             tpc.canLookAround = true;
@@ -30,7 +30,7 @@ public class PushBlock : MonoBehaviour {
             buttonInterface.transform.FindChild("Push").gameObject.SetActive(true);
             if (Input.GetButtonDown("Interact"))
             {
-                transform.SetParent(other.transform);
+                transform.parent.SetParent(other.transform);
                 altweapons.swordAndShieldShowing = false;
                 altweapons.canUseAltWeapon = false;
                 other.GetComponent<ThirdPersonController>().canLookAround = false;
