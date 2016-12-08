@@ -21,7 +21,7 @@ public class AltWeapons : MonoBehaviour {
         Bow,
         Nothing
     }
-    /*[HideInInspector] */public WeaponType weaponType;
+    [HideInInspector] public WeaponType weaponType;
 
     void Start() {
         tpc = GetComponent<ThirdPersonController>();

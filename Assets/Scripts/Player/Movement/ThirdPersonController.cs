@@ -9,7 +9,7 @@ public class ThirdPersonController : MonoBehaviour {
     [HideInInspector] public bool canLookAround = true;
 
 
-    private float turnSpeed = 3f;
+    public float turnSpeed = 3f;
     private float moveX, moveZ, lookX, lookZ;
     private HookshotController hookshotCtrl;
     private YouDead youDead;
