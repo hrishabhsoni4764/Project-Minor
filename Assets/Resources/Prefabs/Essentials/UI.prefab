@@ -112,7 +112,6 @@ GameObject:
   - 223: {fileID: 22380150}
   - 114: {fileID: 11424754}
   - 114: {fileID: 11413942}
-  - 114: {fileID: 114000013309748552}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1766,28 +1765,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114000013309748552
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b87bd40e66388744ae486c6af525511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryIsShowing: 0
-  altWeapons: {fileID: 0}
-  altweaponIcons:
-  - {fileID: 1000013648604090}
-  - {fileID: 1000013893956866}
-  - {fileID: 1000012266329386}
-  selectBrackets:
-  - {fileID: 1000010199938314}
-  - {fileID: 1000010516566338}
-  - {fileID: 1000013298837224}
-  selectedAlt: 0
 --- !u!114 &114000013376251460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2852,6 +2829,6 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 147, y: -40}
-  m_SizeDelta: {x: 294, y: 80}
+  m_AnchoredPosition: {x: 110, y: -40}
+  m_SizeDelta: {x: 220, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}

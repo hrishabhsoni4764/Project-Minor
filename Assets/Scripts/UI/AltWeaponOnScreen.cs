@@ -14,7 +14,7 @@ public class AltWeaponOnScreen : MonoBehaviour {
     private AltWeaponUIZero altWeaponUIZero;
 
     void Start() {
-        altweaponsOnScreen = AltWeaponsOnScreen.Three;
+        altweaponsOnScreen = AltWeaponsOnScreen.Two;
         altWeapons = FindObjectOfType<AltWeapons>();
         altWeaponUIZero = GetComponent<AltWeaponUIZero>();
         altWeaponUIOne = GetComponent<AltWeaponUIOne>();
@@ -26,36 +26,36 @@ public class AltWeaponOnScreen : MonoBehaviour {
         switch (altweaponsOnScreen)
         {
             case AltWeaponsOnScreen.Zero:
-                transform.GetChild(4).gameObject.SetActive(false);
-                transform.GetChild(5).gameObject.SetActive(false);
-                transform.GetChild(6).gameObject.SetActive(false);
+                transform.FindChild("Hook").gameObject.SetActive(false);
+                transform.FindChild("Boom").gameObject.SetActive(false);
+                transform.FindChild("Bow").gameObject.SetActive(false);
                 altWeaponUIZero.active = true;
                 altWeaponUIOne.active = false;
                 altWeaponUITwo.active = false;
                 altWeaponUIThree.active = false;
                 break;
             case AltWeaponsOnScreen.One:
-                transform.GetChild(4).gameObject.SetActive(false);
-                transform.GetChild(5).gameObject.SetActive(true);
-                transform.GetChild(6).gameObject.SetActive(false);
+                transform.FindChild("Hook").gameObject.SetActive(false);
+                transform.FindChild("Boom").gameObject.SetActive(true);
+                transform.FindChild("Bow").gameObject.SetActive(false);
                 altWeaponUIZero.active = false;
                 altWeaponUIOne.active = true;
                 altWeaponUITwo.active = false;
                 altWeaponUIThree.active = false;
                 break;
             case AltWeaponsOnScreen.Two:
-                transform.GetChild(4).gameObject.SetActive(true);
-                transform.GetChild(5).gameObject.SetActive(true);
-                transform.GetChild(6).gameObject.SetActive(false);
+                transform.FindChild("Hook").gameObject.SetActive(true);
+                transform.FindChild("Boom").gameObject.SetActive(true);
+                transform.FindChild("Bow").gameObject.SetActive(false);
                 altWeaponUIZero.active = false;
                 altWeaponUIOne.active = false;
                 altWeaponUITwo.active = true;
                 altWeaponUIThree.active = false;
                 break;
             case AltWeaponsOnScreen.Three:
-                transform.GetChild(4).gameObject.SetActive(true);
-                transform.GetChild(5).gameObject.SetActive(true);
-                transform.GetChild(6).gameObject.SetActive(true);
+                transform.FindChild("Hook").gameObject.SetActive(true);
+                transform.FindChild("Boom").gameObject.SetActive(true);
+                transform.FindChild("Bow").gameObject.SetActive(true);
                 altWeaponUIZero.active = false;
                 altWeaponUIOne.active = false;
                 altWeaponUITwo.active = false;

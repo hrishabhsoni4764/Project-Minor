@@ -39,16 +39,24 @@ public class AltWeapons : MonoBehaviour {
         SelectAltWeapon();
         if (swordAndShieldShowing)
         {
-            tpc.transform.GetChild(5).GetComponent<MeshRenderer>().enabled = true;
-            tpc.transform.GetChild(6).GetComponent<MeshRenderer>().enabled = true;
-            altOS.transform.GetChild(2).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
-            altOS.transform.GetChild(3).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            tpc.transform.FindChild("Sword").GetComponent<MeshRenderer>().enabled = true;
+            tpc.transform.FindChild("Shield").GetComponent<MeshRenderer>().enabled = true;
+            altOS.transform.FindChild("Sword").GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            altOS.transform.FindChild("Shield").GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
         }
         else {
-            tpc.transform.GetChild(5).GetComponent<MeshRenderer>().enabled = false;
-            tpc.transform.GetChild(6).GetComponent<MeshRenderer>().enabled = false;
-            altOS.transform.GetChild(2).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
-            altOS.transform.GetChild(3).GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+            tpc.transform.FindChild("Sword").GetComponent<MeshRenderer>().enabled = false;
+            tpc.transform.FindChild("Shield").GetComponent<MeshRenderer>().enabled = false;
+            altOS.transform.FindChild("Sword").GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+            altOS.transform.FindChild("Shield").GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+        }
+
+        if (canUseAltWeapon)
+        {
+            altOS.transform.FindChild("AltWeapon").GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+        }
+        else {
+            altOS.transform.FindChild("AltWeapon").GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
         }
     }
 

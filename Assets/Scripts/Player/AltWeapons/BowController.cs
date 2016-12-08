@@ -10,11 +10,12 @@ public class BowController : MonoBehaviour {
     [HideInInspector] public float shootingSpeed = 0.5f;
 
     private float shootingLength = 15f;
+    private Rigidbody rb;
 
     private Transform bowObj;
 
 	void Start () {
-	
+        rb = GetComponent<Rigidbody>();
 	}
 	
 	void Update () {
@@ -23,6 +24,8 @@ public class BowController : MonoBehaviour {
             switch (currentState)
             {
                 case BowState.Idle:
+                    rb.useGravity = true;
+                    rb.isKinematic = false;
                     if (Input.GetButtonDown("AltWeapon") && altweapons.canUseAltWeapon)
                     {
                         GameObject altWeaponInUse = Instantiate(altweapons.altWeapons[2], altweapons.altWeaponPos, Quaternion.LookRotation(transform.forward)) as GameObject;
@@ -35,6 +38,8 @@ public class BowController : MonoBehaviour {
                     }
                     break;
                 case BowState.Shoot:
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
                     ShootArrow();
                     break;
                 default:

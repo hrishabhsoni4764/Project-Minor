@@ -5,9 +5,9 @@ public class KillBox : MonoBehaviour {
 
     void OnCollisionStay (Collision C)
     {
-        if (C.collider.GetComponent<YouDead>() != null)
+        if (C.collider.GetComponent<Raycasts>() != null)
         {
-            C.collider.GetComponent<YouDead>().Kill();
+            C.collider.GetComponent<Raycasts>().Kill();
         }
     }
 }

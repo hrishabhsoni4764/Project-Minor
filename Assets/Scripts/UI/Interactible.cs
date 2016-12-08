@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public enum InteractibleType { Chest, NPC, Door }
 public class Interactible : MonoBehaviour {
 
     private ChestLoot chestLoot;
-    private VillagerBehaviour villgerB;
+    private VillagerBehaviour villagerB;
     private AltWeaponOnScreen altOS;
     private EnterTransitionTrigger ett;
+    private Coroutine currentRoutine;
     [HideInInspector] public GameObject buttonCanvas;
 
     public InteractibleType interactibleType;
@@ -16,13 +18,16 @@ public class Interactible : MonoBehaviour {
         buttonCanvas = transform.FindChild("Canvas").gameObject;
         chestLoot = GetComponent<ChestLoot>();
         ett = GetComponent<EnterTransitionTrigger>();
-        villgerB = GetComponent<VillagerBehaviour>();
+        villagerB = GetComponent<VillagerBehaviour>();
         altOS = FindObjectOfType<AltWeaponOnScreen>();
     }
 
     void Update() {
-        buttonCanvas.transform.GetChild(0).forward = Camera.main.transform.forward * -1;
-        buttonCanvas.transform.GetChild(1).forward = Camera.main.transform.forward * -1;
+        if (buttonCanvas != null)
+        {
+            buttonCanvas.transform.GetChild(0).forward = Camera.main.transform.forward * -1;
+            buttonCanvas.transform.GetChild(1).forward = Camera.main.transform.forward * -1;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -94,6 +99,46 @@ public class Interactible : MonoBehaviour {
                 }
                 break;
         }
-        
+    }
+
+    public void TextFading(float fadeSpeed)
+    {
+        Color textColor = buttonCanvas.transform.GetChild(1).GetChild(0).GetComponent<Text>().color;
+        if (textColor.a == 1)
+        {
+            currentRoutine = StartCoroutine(TextFadingOut(textColor, fadeSpeed));
+        }
+        else if (textColor.a == 0)
+        {
+            currentRoutine = StartCoroutine(TextFadingIn(textColor, fadeSpeed));
+        }
+    }   
+
+    public IEnumerator TextFadingIn(Color textColor, float fadeSpeed) {
+        Color vis = textColor;
+        vis.a = 1f;
+        while (textColor.a < 1f)
+        {
+            print("Text fading in");
+            textColor.a = Color.Lerp(textColor, vis, 0.01f).a;
+            yield return new WaitForSeconds(fadeSpeed);
+        }
+    }
+
+    public IEnumerator TextFadingOut(Color textColor, float fadeSpeed)
+    {
+        Color invis = textColor;
+        invis.a = 1f;
+        while (textColor.a < 1f)
+        {
+            print("Text fading out");
+            textColor.a = Color.Lerp(textColor, invis, 0.01f).a;
+            yield return new WaitForSeconds(fadeSpeed);
+        }
+    }
+
+    public IEnumerator TextDelay() {
+        yield return new WaitForSeconds(.3f);
+        buttonCanvas.transform.GetChild(1).GetComponentInChildren<Text>().text = (villagerB.dialogueTextInput);
     }
 }

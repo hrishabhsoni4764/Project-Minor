@@ -8,13 +8,14 @@ public class BoomerangController : MonoBehaviour {
     [HideInInspector] public BoomerangState currentState;
     [HideInInspector] public AltWeapons altweapons;
 
-    private float shootingSpeed = 0.3f;
     public float shootingLength = 7f;
+    private float shootingSpeed = 0.3f;
     private float retractingSpeed = 0.3f;
+    private Rigidbody rb;
 
     private Transform boomerangObj;
     void Start () {
-	
+        rb = GetComponent<Rigidbody>();
 	}
 	
 
@@ -23,6 +24,8 @@ public class BoomerangController : MonoBehaviour {
             switch (currentState)
             {
                 case BoomerangState.Idle:
+                    rb.useGravity = true;
+                    rb.isKinematic = false;
                     if (Input.GetButtonDown("AltWeapon") && altweapons.canUseAltWeapon) {
                         GameObject altWeaponInUse = Instantiate(altweapons.altWeapons[0], altweapons.altWeaponPos, Quaternion.identity) as GameObject;
                         boomerangObj = altWeaponInUse.transform;
@@ -34,9 +37,13 @@ public class BoomerangController : MonoBehaviour {
                     }
                     break;
                 case BoomerangState.Shoot:
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
                     ShootBoomerang();
                     break;
                 case BoomerangState.Retract:
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
                     RetractBoomerang();
                     break;
                 default:

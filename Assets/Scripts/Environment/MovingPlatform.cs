@@ -9,6 +9,13 @@ public class MovingPlatform : MonoBehaviour {
     private float moveSpeed = 3f;
     private int currentPoint;
     private PlatformState platformState;
+    private ThirdPersonController tpc;
+
+    [HideInInspector] public bool isParented;
+
+    void Start() {
+        tpc = FindObjectOfType<ThirdPersonController>();
+    }
 
 	void Update () {
         switch (platformState)
@@ -19,6 +26,14 @@ public class MovingPlatform : MonoBehaviour {
             case PlatformState.Idle:
                 StartCoroutine("Idle");
                 break;
+        }
+        if (isParented)
+        {
+            tpc.transform.SetParent(transform);
+        }
+        else
+        {
+            tpc.transform.SetParent(null);
         }
     }
 

@@ -12,7 +12,7 @@ public class ThirdPersonController : MonoBehaviour {
     public float turnSpeed = 3f;
     private float moveX, moveZ, lookX, lookZ;
     private HookshotController hookshotCtrl;
-    private YouDead youDead;
+    private Raycasts raycasts;
     private Vector3 dir = Vector3.zero;
     private bool isGrounded;
 
@@ -23,7 +23,7 @@ public class ThirdPersonController : MonoBehaviour {
 
     void Awake() {
         hookshotCtrl = GetComponent<HookshotController>();
-        youDead = GetComponent<YouDead>();       
+        raycasts = GetComponent<Raycasts>();       
     }
 
     void Update ()
@@ -38,43 +38,29 @@ public class ThirdPersonController : MonoBehaviour {
 
     void Movement()
     {
-        if (canMove/* && youDead.isGrounded*/)
+        if (canMove)
         {
             isWalking = moveX != 0 || moveZ != 0;
             transform.position += new Vector3(moveX, 0f, moveZ).normalized * defaultSpeed * Time.deltaTime;
         }
         if (canLookAround) {
-            //if (Input.mousePresent)
-            //{
-                //Vector2 tempDir = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
+            Vector2 tempDir = new Vector2(-lookX, -lookZ).normalized;
 
-                //dir = new Vector3(tempDir.x, 0, tempDir.y);
+            dir = new Vector3(-tempDir.x, 0, tempDir.y);
 
-                //if (dir != Vector3.zero)
-                //{
-                //    transform.forward = Vector3.Slerp(transform.forward, dir, Time.deltaTime * turnSpeed);
-                //}
-                Vector2 tempDir = new Vector2(moveX, moveZ).normalized;
-
-                dir = new Vector3(tempDir.x, 0, tempDir.y);
-
-                if (dir != Vector3.zero)
-                {
-                    transform.forward = Vector3.Slerp(transform.forward, dir, Time.deltaTime * turnSpeed);
-                }
-            //}
+            if (dir != Vector3.zero)
+            {
+                transform.forward = Vector3.Slerp(transform.forward, dir, Time.deltaTime * turnSpeed);
+            }
         }
     }
 
     private void GetInput()
     {
-        //if (youDead.isGrounded)
-        //{
-            moveX = Input.GetAxis("Horizontal");
-            moveZ = Input.GetAxis("Vertical");
-            lookX = Input.GetAxis("Horizontal(Rstick)");
-            lookZ = Input.GetAxis("Vertical(Rstick)");
-        //}
+        moveX = Input.GetAxis("Horizontal");
+        moveZ = Input.GetAxis("Vertical");
+        lookX = Input.GetAxis("Horizontal(Rstick)");
+        lookZ = Input.GetAxis("Vertical(Rstick)");
     }
 
     public void TowardsHookshotTarget(Transform hookedTarget) {

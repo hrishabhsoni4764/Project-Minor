@@ -10,10 +10,11 @@ public class HookshotController : MonoBehaviour {
 
     public float shootingLength = 6f;
     private float retractingSpeed = 0.4f;
+    private Rigidbody rb;
 
     private Transform hookshotObj;
 	void Start () {
-
+        rb = GetComponent<Rigidbody>();
     }
 	
 	void Update () {
@@ -23,6 +24,8 @@ public class HookshotController : MonoBehaviour {
             switch (currentState)
             {
                 case HookshotState.Idle:
+                    rb.useGravity = true;
+                    rb.isKinematic = false;
                     if (Input.GetButtonDown("AltWeapon") && altweapons.canUseAltWeapon)
                     {
                         GameObject altWeaponInUse = Instantiate(altweapons.altWeapons[1], altweapons.altWeaponPos, Quaternion.identity) as GameObject;
@@ -35,12 +38,18 @@ public class HookshotController : MonoBehaviour {
                     }
                     break;
                 case HookshotState.Shoot:
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
                     ShootHookshot();
                     break;
                 case HookshotState.Retract:
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
                     RetractHookshot();
                     break;
                 case HookshotState.HookedOnTarget:
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
                     HookedOnTarget();
                     break;
                 default:

@@ -15,8 +15,8 @@ public class AltWeaponUIZero : MonoBehaviour {
         if (active)
         {
             altWeapons.weaponType = AltWeapons.WeaponType.Nothing;
-            transform.GetChild(7).GetComponent<Image>().sprite = null;
-            transform.GetChild(7).GetComponent<Image>().color = new Color(1f,1f,1f,0f);
+            transform.FindChild("AltWeapon").GetComponent<Image>().sprite = null;
+            transform.FindChild("AltWeapon").GetComponent<Image>().color = new Color(1f,1f,1f,0f);
         }
     }
 }

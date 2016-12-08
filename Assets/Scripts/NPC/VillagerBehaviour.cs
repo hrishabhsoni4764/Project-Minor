@@ -34,6 +34,8 @@ public class VillagerBehaviour : MonoBehaviour {
                 player.canMove = false;
                 isTalking = true;
                 interactible.buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
+                //interactible.TextFading(0.01f);
+                
                 ActivateDialogueSettings(1);
             }
             else if (Input.GetButtonDown("Interact") && isTalking)
@@ -41,6 +43,7 @@ public class VillagerBehaviour : MonoBehaviour {
                 player.canMove = true;
                 isTalking = false;
                 interactible.buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 1);
+                //interactible.TextFading(0.01f);
                 ActivateDialogueSettings(0);
             }
             CutsceneCamera();
@@ -52,7 +55,7 @@ public class VillagerBehaviour : MonoBehaviour {
         interactible.buttonCanvas.transform.GetChild(1).GetComponent<Animator>().SetInteger("speechBubble", setTrigger);
         if (setTrigger == 1)
         {
-            interactible.buttonCanvas.transform.GetChild(1).GetComponentInChildren<Text>().text = (dialogueTextInput);
+            interactible.StartCoroutine("TextDelay");
         }
         else {
             interactible.buttonCanvas.transform.GetChild(1).GetComponentInChildren<Text>().text = null;

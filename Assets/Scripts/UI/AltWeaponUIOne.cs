@@ -14,8 +14,8 @@ public class AltWeaponUIOne : MonoBehaviour {
 	void Update () {
         if (active) {
             altWeapons.weaponType = AltWeapons.WeaponType.Boomerang;
-            transform.GetChild(7).GetComponent<Image>().sprite = transform.GetChild(5).GetComponent<Image>().sprite;
-            transform.GetChild(7).GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+            transform.FindChild("AltWeapon").GetComponent<Image>().sprite = transform.FindChild("Boom").GetComponent<Image>().sprite;
+            transform.FindChild("AltWeapon").GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
         }
     }
 }
