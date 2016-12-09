@@ -22,10 +22,12 @@ public class ChestLoot : MonoBehaviour {
     [HideInInspector] public bool chestLooted;
     private UIKey uiKey;
     private CameraMovement cameraM;
+    private AltWeaponOnScreen altOS;
 
     void Start() {
         uiKey = FindObjectOfType<UIKey>();
         cameraM = FindObjectOfType<CameraMovement>();
+        altOS = FindObjectOfType<AltWeaponOnScreen>();
     }
 
     void OnTriggerStay(Collider other)
@@ -62,7 +64,13 @@ public class ChestLoot : MonoBehaviour {
                             {
                                 StartCoroutine("CameraPan");
                             }
-                            FindObjectOfType<AltWeaponOnScreen>().altweaponsOnScreen = AltWeaponsOnScreen.Two;
+                            if (altOS.altweaponsOnScreen == AltWeaponsOnScreen.Zero) {
+                                altOS.altweaponsOnScreen = AltWeaponsOnScreen.One;
+                            } else if (altOS.altweaponsOnScreen == AltWeaponsOnScreen.One) {
+                                altOS.altweaponsOnScreen = AltWeaponsOnScreen.Two;
+                            } else if (altOS.altweaponsOnScreen == AltWeaponsOnScreen.Two) {
+                                altOS.altweaponsOnScreen = AltWeaponsOnScreen.Three;
+                            }
                             chestLooted = true;
                             break;
                     }
@@ -87,6 +95,6 @@ public class ChestLoot : MonoBehaviour {
         cameraM.cameraState = CameraState.Pan;
         yield return new WaitForSeconds(animPause);
         objectToTrigger.GetComponent<DoorEvent>().active = true;
-        objectToTrigger.GetComponent<DoorEvent>().posToMoveTo = targetMove;
+        objectToTrigger.GetComponent<DoorEvent>().posToMoveTo1 = targetMove;
     }
 }

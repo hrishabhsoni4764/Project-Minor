@@ -14,7 +14,7 @@ public class AltWeaponOnScreen : MonoBehaviour {
     private AltWeaponUIZero altWeaponUIZero;
 
     void Start() {
-        altweaponsOnScreen = AltWeaponsOnScreen.Two;
+        altweaponsOnScreen = AltWeaponsOnScreen.Zero;
         altWeapons = FindObjectOfType<AltWeapons>();
         altWeaponUIZero = GetComponent<AltWeaponUIZero>();
         altWeaponUIOne = GetComponent<AltWeaponUIOne>();

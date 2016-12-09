@@ -43,7 +43,7 @@ GameObject:
   - 33: {fileID: 33000010544506266}
   - 23: {fileID: 23000012391074184}
   m_Layer: 0
-  m_Name: ButtonTrigger
+  m_Name: FloorButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

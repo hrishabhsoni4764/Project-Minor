@@ -26,12 +26,36 @@ public class SwitchEvent : MonoBehaviour {
     }
 
 	void Update () {
+
+        if (isTriggered) {
+            Color colTrig = new Color(0.3f, 0f, 0f, 1f);
+            gameObject.GetComponent<Renderer>().material.color = colTrig;
+        }
+        else {
+            Color colNotTrig = new Color(1f, 0f, 0f, 1f);
+            gameObject.GetComponent<Renderer>().material.color = colNotTrig;
+        }
+
         if (switchEventActivate) {
             if (!isTriggered)
             {
-                isTriggered = true;
-                StartCoroutine("WaitForPan");
+                if (triggerCase == TriggerCase.Multi)
+                {
+                    isTriggered = true;
+                    //objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
+                    //if (objectToTrigger.GetComponent<MultiSwitchEvent>().actives[0] && objectToTrigger.GetComponent<MultiSwitchEvent>().actives[1]) {
+                    //    objectToTrigger.GetComponent<DoorEvent>().activeTo = true;
+                    //}
+                    StartCoroutine("WaitForPan");
+                }
+                else
+                {
+                    isTriggered = true;
+                    StartCoroutine("WaitForPan");
+                    objectToTrigger.GetComponent<DoorEvent>().active = true;
+                }
             }
+
         }
 	}
 
@@ -41,15 +65,5 @@ public class SwitchEvent : MonoBehaviour {
         cameraM.panPause = panPause;
         cameraM.cameraState = CameraState.Pan;
         yield return new WaitForSeconds(animPause);
-        switch (triggerCase)
-        {
-            case TriggerCase.Single:
-                objectToTrigger.GetComponent<DoorEvent>().active = true;
-                break;
-            case TriggerCase.Multi:
-                objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
-                break;
-        }
     }
-
 }
