@@ -5,7 +5,7 @@ using System.Collections;
 public class SwitchEvent : MonoBehaviour {
 
     private CameraMovement cameraM;
-    private bool isTriggered;
+    [HideInInspector] public bool isTriggered;
     [HideInInspector] public bool switchEventActivate;
 
     [Header("-Event Panning-")]
@@ -36,16 +36,14 @@ public class SwitchEvent : MonoBehaviour {
             gameObject.GetComponent<Renderer>().material.color = colNotTrig;
         }
 
-        if (switchEventActivate) {
+        if (switchEventActivate)
+        {
             if (!isTriggered)
             {
                 if (triggerCase == TriggerCase.Multi)
                 {
                     isTriggered = true;
-                    //objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
-                    //if (objectToTrigger.GetComponent<MultiSwitchEvent>().actives[0] && objectToTrigger.GetComponent<MultiSwitchEvent>().actives[1]) {
-                    //    objectToTrigger.GetComponent<DoorEvent>().activeTo = true;
-                    //}
+                    objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
                     StartCoroutine("WaitForPan");
                 }
                 else
@@ -55,7 +53,6 @@ public class SwitchEvent : MonoBehaviour {
                     objectToTrigger.GetComponent<DoorEvent>().active = true;
                 }
             }
-
         }
 	}
 

@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013865488880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.69, y: 1.082, z: -57.04}
+  m_LocalPosition: {x: 30.804935, y: 1.0787766, z: -58.058987}
   m_LocalScale: {x: 1.9493374, y: 0.15755318, z: 1.9493372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f940888dc681a4a911c2164352f509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTriggered: 0
   switchEventActivate: 0
   target: {fileID: 0}
   height: 8

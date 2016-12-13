@@ -23,6 +23,7 @@ GameObject:
   - 65: {fileID: 65000011206052898}
   - 23: {fileID: 23000010585766542}
   - 54: {fileID: 54000011676301278}
+  - 114: {fileID: 114000011790911288}
   m_Layer: 0
   m_Name: PushBlock
   m_TagString: Untagged
@@ -69,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010310182896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.3, y: 2.1748242, z: -51.41}
+  m_LocalPosition: {x: 25.862442, y: 2.1748242, z: -59.349274}
   m_LocalScale: {x: 1.8249695, y: 2.3496485, z: 1.8249693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -193,6 +194,17 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010738901530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db0020d9ca251647a98a46def0dc073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000011790911288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010310182896}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3db0020d9ca251647a98a46def0dc073, type: 3}

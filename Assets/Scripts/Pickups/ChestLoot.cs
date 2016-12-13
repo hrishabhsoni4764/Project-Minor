@@ -95,6 +95,6 @@ public class ChestLoot : MonoBehaviour {
         cameraM.cameraState = CameraState.Pan;
         yield return new WaitForSeconds(animPause);
         objectToTrigger.GetComponent<DoorEvent>().active = true;
-        objectToTrigger.GetComponent<DoorEvent>().posToMoveTo1 = targetMove;
+        objectToTrigger.GetComponent<DoorEvent>().posToMoveTo = targetMove;
     }
 }
