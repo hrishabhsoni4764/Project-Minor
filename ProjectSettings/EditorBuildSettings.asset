@@ -5,19 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inside/Dungeon_StartRoom.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inside/Dungeon_LRoom1.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inside/Dungeon_LRoom2.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inside/Dungeon_LRoom3.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inside/Dungeon_RRoom1.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inside/Dungeon_RRoom2.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inside/Dungeon_RRoom3.unity
   - enabled: 1
     path: Assets/Scenes/Overworld/Overworld.unity

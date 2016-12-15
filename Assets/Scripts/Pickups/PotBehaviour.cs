@@ -55,8 +55,7 @@ public class PotBehaviour : MonoBehaviour {
 
     void FadeOut() {
         renderMode = RenderMode.Fade;
-        
-    }
+        StartCoroutine("DeleteDelay");    }
 
 
     IEnumerator DeleteDelay() {
