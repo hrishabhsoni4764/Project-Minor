@@ -3,8 +3,10 @@ using System.Collections;
 
 public class MovingPlatform : MonoBehaviour {
 
+    public bool triggeredOnStart;
     public GameObject[] nodes;
 
+    /*[HideInInspector] */public bool active;
     private enum PlatformState { Moving, Idle }
     private float moveSpeed = 3f;
     private int currentPoint;
@@ -18,14 +20,31 @@ public class MovingPlatform : MonoBehaviour {
     }
 
 	void Update () {
-        switch (platformState)
+        if (triggeredOnStart)
         {
-            case PlatformState.Moving:
-                Moving();
-                break;
-            case PlatformState.Idle:
-                StartCoroutine("Idle");
-                break;
+            switch (platformState)
+            {
+                case PlatformState.Moving:
+                    Moving();
+                    break;
+                case PlatformState.Idle:
+                    StartCoroutine("Idle");
+                    break;
+            }
+        }
+        else {
+            if (active)
+            {
+                switch (platformState)
+                {
+                    case PlatformState.Moving:
+                        Moving();
+                        break;
+                    case PlatformState.Idle:
+                        StartCoroutine("Idle");
+                        break;
+                }
+            }
         }
         if (isParented)
         {

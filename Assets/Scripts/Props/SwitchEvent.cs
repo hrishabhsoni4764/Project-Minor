@@ -5,8 +5,8 @@ using System.Collections;
 public class SwitchEvent : MonoBehaviour {
 
     private CameraMovement cameraM;
-    /*[HideInInspector]*/ public bool isTriggered;
-    [HideInInspector] public bool switchEventActivate;
+    [HideInInspector] public bool isTriggered;
+    /*[HideInInspector] */public bool switchEventActivate;
 
     [Header("-Event Panning-")]
     public Transform target;
