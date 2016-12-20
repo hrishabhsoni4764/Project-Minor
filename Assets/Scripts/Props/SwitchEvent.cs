@@ -16,6 +16,7 @@ public class SwitchEvent : MonoBehaviour {
 
     [Header("-Trigger Type-")]
     public bool movingPlatform;
+    public bool togglePlatform;
     public TriggerCase triggerCase;
     public int numberKey_multi;
 
@@ -34,25 +35,37 @@ public class SwitchEvent : MonoBehaviour {
         //else
         //{
         //}
-
+        
         if (!movingPlatform)
         {
-            if (activateSwitch)
+            if (!togglePlatform)
             {
-                if (!isTriggered)
+                if (activateSwitch)
                 {
-                    if (triggerCase == TriggerCase.Multi)
+                    if (!isTriggered)
                     {
-                        isTriggered = true;
-                        objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
-                        StartCoroutine("WaitForPan");
+                        if (triggerCase == TriggerCase.Multi)
+                        {
+                            isTriggered = true;
+                            objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
+                            StartCoroutine("WaitForPan");
+                        }
+                        else
+                        {
+                            isTriggered = true;
+                            StartCoroutine("WaitForPan");
+                            objectToTrigger.GetComponent<DoorEvent>().active = true;
+                        }
                     }
-                    else
-                    {
-                        isTriggered = true;
-                        StartCoroutine("WaitForPan");
-                        objectToTrigger.GetComponent<DoorEvent>().active = true;
-                    }
+                }
+            }
+            else
+            {
+                if (activateSwitch)
+                {
+                    StartCoroutine("WaitForPan");
+                    objectToTrigger.GetComponent<TogglePlatform>().isHit = true;
+                    activateSwitch = false;
                 }
             }
         }

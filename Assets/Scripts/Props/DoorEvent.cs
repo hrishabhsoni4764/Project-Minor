@@ -6,7 +6,6 @@ public class DoorEvent : MonoBehaviour {
     [HideInInspector] public bool active;
     public Transform posToMoveTo;
     private float transitionSpeed = 0.05f;
-    private SwitchEvent sE;
 
     private float journeyLength;
     private float startTime;
@@ -14,7 +13,6 @@ public class DoorEvent : MonoBehaviour {
     void Start()
     {
         startTime = Time.time;
-        sE = FindObjectOfType<SwitchEvent>();
         journeyLength = Vector3.Distance(transform.position, posToMoveTo.position);
     }
 	void Update () {
