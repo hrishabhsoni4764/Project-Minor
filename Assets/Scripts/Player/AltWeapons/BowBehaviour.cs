@@ -13,7 +13,7 @@ public class BowBehaviour : MonoBehaviour {
     {
         if (other.CompareTag("BowObject"))
         {
-            other.GetComponent<SwitchEvent>().switchEventActivate = true;
+            other.GetComponent<SwitchEvent>().activateSwitch = true;
             altWeapons.bow.currentState = BowState.Idle;
 
             Destroy(this.gameObject);

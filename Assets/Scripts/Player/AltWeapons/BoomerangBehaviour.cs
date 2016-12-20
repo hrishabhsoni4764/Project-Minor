@@ -22,7 +22,7 @@ public class BoomerangBehaviour : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("BoomerangObject") && !other.GetComponent<ThirdPersonController>() && !other.GetComponent<PlayerHitBox>())
         {
-            other.GetComponent<SwitchEvent>().switchEventActivate = true;
+            other.GetComponent<SwitchEvent>().activateSwitch = true;
         }
         if (!other.GetComponent<ThirdPersonController>() && !other.GetComponent<PlayerHitBox>() && !(other.CompareTag("Enemy") && (other.GetType() == typeof(SphereCollider))) && other.gameObject.layer != 8)
         {

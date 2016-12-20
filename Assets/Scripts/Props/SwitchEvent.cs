@@ -5,9 +5,8 @@ using System.Collections;
 public class SwitchEvent : MonoBehaviour {
 
     private CameraMovement cameraM;
-    private GameObject[] buttons;
     [HideInInspector] public bool isTriggered;
-    /*[HideInInspector] */public bool switchEventActivate;
+    /*[HideInInspector] */public bool activateSwitch;
 
     [Header("-Event Panning-")]
     public Transform target;
@@ -25,35 +24,46 @@ public class SwitchEvent : MonoBehaviour {
 
     void Start() {
         cameraM = FindObjectOfType<CameraMovement>();
-        //buttons[0] = Resources
     }
 
 	void Update () {
 
-        if (isTriggered) {
-            Color colTrig = new Color(0.3f, 0f, 0f, 1f);
-            gameObject.GetComponent<Renderer>().material.color = colTrig;
+        //if (isTriggered)
+        //{
+        //}
+        //else
+        //{
+        //}
+
+        if (!movingPlatform)
+        {
+            if (activateSwitch)
+            {
+                if (!isTriggered)
+                {
+                    if (triggerCase == TriggerCase.Multi)
+                    {
+                        isTriggered = true;
+                        objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
+                        StartCoroutine("WaitForPan");
+                    }
+                    else
+                    {
+                        isTriggered = true;
+                        StartCoroutine("WaitForPan");
+                        objectToTrigger.GetComponent<DoorEvent>().active = true;
+                    }
+                }
+            }
         }
         else {
-            Color colNotTrig = new Color(1f, 0f, 0f, 1f);
-            gameObject.GetComponent<Renderer>().material.color = colNotTrig;
-        }
-
-        if (switchEventActivate)
-        {
-            if (!isTriggered)
+            if (activateSwitch)
             {
-                if (triggerCase == TriggerCase.Multi)
-                {
-                    isTriggered = true;
-                    objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
-                    StartCoroutine("WaitForPan");
-                }
-                else
+                if (!isTriggered)
                 {
                     isTriggered = true;
                     StartCoroutine("WaitForPan");
-                    objectToTrigger.GetComponent<DoorEvent>().active = true;
+                    objectToTrigger.GetComponent<MovingPlatform>().active = true;
                 }
             }
         }

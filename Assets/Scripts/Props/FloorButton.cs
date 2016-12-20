@@ -7,8 +7,7 @@ public class FloorButton : MonoBehaviour {
     {
         if (other.name == "PushBlock")
         {
-            GetComponent<Animator>().SetInteger("pushFloorButton", 1);
-            GetComponent<SwitchEvent>().switchEventActivate = true;
+            GetComponent<SwitchEvent>().activateSwitch = true;
         }
     }
 
@@ -16,7 +15,7 @@ public class FloorButton : MonoBehaviour {
     {
         if (other.name == "PushBlock")
         {
-            GetComponent<Animator>().SetInteger("pushFloorButton", 0);
+            GetComponent<SwitchEvent>().activateSwitch = false;
         }
     }
 }
