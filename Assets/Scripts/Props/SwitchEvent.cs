@@ -5,6 +5,7 @@ using System.Collections;
 public class SwitchEvent : MonoBehaviour {
 
     private CameraMovement cameraM;
+    private GameObject[] buttons;
     [HideInInspector] public bool isTriggered;
     /*[HideInInspector] */public bool switchEventActivate;
 
@@ -15,6 +16,7 @@ public class SwitchEvent : MonoBehaviour {
     public int animPause;
 
     [Header("-Trigger Type-")]
+    public bool movingPlatform;
     public TriggerCase triggerCase;
     public int numberKey_multi;
 
@@ -23,6 +25,7 @@ public class SwitchEvent : MonoBehaviour {
 
     void Start() {
         cameraM = FindObjectOfType<CameraMovement>();
+        //buttons[0] = Resources
     }
 
 	void Update () {
