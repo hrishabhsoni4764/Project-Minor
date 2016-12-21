@@ -5,13 +5,16 @@ public class Raycasts : MonoBehaviour {
 
     private Vector3 lastPosition;
     private MovingPlatform movingP;
+    private TogglePlatform toggleP;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask movingPlatformLayer;
+    [SerializeField] LayerMask togglePlatformLayer;
 
     [HideInInspector] public bool isGrounded;
 
     void Start() {
         movingP = FindObjectOfType<MovingPlatform>();
+        toggleP = FindObjectOfType<TogglePlatform>();
     }
 
 	void Update () {
@@ -26,13 +29,29 @@ public class Raycasts : MonoBehaviour {
             isGrounded = false;
         }
 
-        if(Physics.Raycast(transform.position, Vector3.down, out hit, 1, movingPlatformLayer))
+        if (!GetComponent<PushBlock>())
         {
-            movingP.isParented = true;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1, movingPlatformLayer))
+            {
+                movingP.isParented = true;
+            }
+            else
+            {
+                movingP.isParented = false;
+            }
         }
         else
         {
-            movingP.isParented = false;
+            if (transform.parent != GetComponent<ThirdPersonController>().transform) {
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, 1, togglePlatformLayer))
+                {
+                    transform.SetParent(hit.transform);
+                }
+                else
+                {
+                    transform.SetParent(null);
+                }
+            }
         }
     }
 
