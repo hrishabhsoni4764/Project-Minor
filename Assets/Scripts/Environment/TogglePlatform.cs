@@ -19,7 +19,6 @@ public class TogglePlatform : MonoBehaviour {
 
 	void Update ()
     {
-        Debug.Log(isHit);
         if (isHit) {
             if (hit == 0) {
                 journeyLength = Vector3.Distance(transform.position, togglePoints[hit].position);
