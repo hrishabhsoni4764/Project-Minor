@@ -1,15 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
-SceneSettings:
+OcclusionCullingSettings:
   m_ObjectHideFlags: 0
-  m_PVSData: 
-  m_PVSObjectsArray: []
-  m_PVSPortalsArray: []
+  serializedVersion: 2
   m_OcclusionBakeSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -79,16 +79,17 @@ NavMeshSettings:
   m_ObjectHideFlags: 0
   m_BuildSettings:
     serializedVersion: 2
+    agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
-    accuratePlacement: 0
     minRegionArea: 2
-    cellSize: 0.16666667
     manualCellSize: 0
+    cellSize: 0.16666667
+    accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
 --- !u!4 &10715723 stripped
 Transform:
@@ -206,11 +207,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b0c3f12697dda84e8faeae2b25734e9, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &461454058 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013542453278, guid: 619a85262db5c964eb1b7b9146b81877,
-    type: 2}
-  m_PrefabInternal: {fileID: 1430350827}
 --- !u!4 &598614444 stripped
 Transform:
   m_PrefabParentObject: {fileID: 491360, guid: 5b0c3f12697dda84e8faeae2b25734e9, type: 2}
@@ -366,6 +362,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010347496266, guid: b293df4e1c49a004dba772eefbad8e8a,
+        type: 2}
+      propertyPath: transitionTo
+      value: OverWorld
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b293df4e1c49a004dba772eefbad8e8a, type: 2}
   m_IsPrefabParent: 0
@@ -470,7 +471,7 @@ Prefab:
     - target: {fileID: 224000011235105602, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011235105602, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
@@ -480,7 +481,7 @@ Prefab:
     - target: {fileID: 224000011235105602, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011809893092, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
@@ -500,7 +501,7 @@ Prefab:
     - target: {fileID: 224000011809893092, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011809893092, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
@@ -510,7 +511,7 @@ Prefab:
     - target: {fileID: 224000011809893092, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000013500367864, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
@@ -530,7 +531,7 @@ Prefab:
     - target: {fileID: 224000013500367864, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000013500367864, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
@@ -540,7 +541,7 @@ Prefab:
     - target: {fileID: 224000013500367864, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011209417960, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
@@ -560,7 +561,7 @@ Prefab:
     - target: {fileID: 224000011209417960, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011209417960, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
@@ -570,7 +571,7 @@ Prefab:
     - target: {fileID: 224000011209417960, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000013091329856, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
@@ -590,7 +591,7 @@ Prefab:
     - target: {fileID: 224000013091329856, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000013091329856, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
@@ -600,7 +601,7 @@ Prefab:
     - target: {fileID: 224000013091329856, guid: 619a85262db5c964eb1b7b9146b81877,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 197780, guid: 619a85262db5c964eb1b7b9146b81877, type: 2}
       propertyPath: m_IsActive
@@ -627,10 +628,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 1645493413}
-  - 108: {fileID: 1645493412}
+  - component: {fileID: 1645493413}
+  - component: {fileID: 1645493412}
   m_Layer: 0
   m_Name: InsideHouseLight
   m_TagString: Untagged
@@ -681,10 +682,10 @@ Transform:
   m_LocalRotation: {x: 0.70710576, y: -0, z: -0, w: 0.7071079}
   m_LocalPosition: {x: -0.7, y: -16.45, z: 7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 89.981, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 89.981, y: 0, z: 0}
 --- !u!4 &1816505843 stripped
 Transform:
   m_PrefabParentObject: {fileID: 486814, guid: 5b0c3f12697dda84e8faeae2b25734e9, type: 2}
@@ -743,7 +744,7 @@ Prefab:
     - target: {fileID: 11422758, guid: d319c2dce50ccca4181050be91309efd, type: 2}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 461454058}
+      objectReference: {fileID: 0}
     - target: {fileID: 11422758, guid: d319c2dce50ccca4181050be91309efd, type: 2}
       propertyPath: fadeOverlay
       value: 

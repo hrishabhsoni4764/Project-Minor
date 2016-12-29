@@ -23,3 +23,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Overworld/Overworld.unity
   - enabled: 1
     path: Assets/Scenes/Inside/InsideHouse.unity
+  - enabled: 1
+    path: Assets/Scenes/OutsideWorld/OutsideWorld.unity
+  - enabled: 1
+    path: Assets/Scenes/Dungeon1/Dungeon1.unity
+  - enabled: 1
+    path: Assets/Scenes/Dungeon2/Dungeon2.unity
