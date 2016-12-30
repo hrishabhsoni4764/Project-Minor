@@ -71,7 +71,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000010433819884}
-  - component: {fileID: 95000010353951234}
   m_Layer: 0
   m_Name: RoomSitchDoor
   m_TagString: Untagged
@@ -236,23 +235,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 210, y: 342.0276, z: 9.470143}
   m_Center: {x: -2.032879e-20, y: -0.00032043457, z: 0.000002861023}
---- !u!95 &95000010353951234
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012897230034}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: 66639b09a1675a14290fb668f90e1451, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000013365060322
 MonoBehaviour:
   m_ObjectHideFlags: 1
