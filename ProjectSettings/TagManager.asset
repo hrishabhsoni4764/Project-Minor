@@ -22,6 +22,8 @@ TagManager:
   - Ground
   - RockSlide
   - BossDoor
+  - Fire
+  - Crate
   layers:
   - Default
   - TransparentFX

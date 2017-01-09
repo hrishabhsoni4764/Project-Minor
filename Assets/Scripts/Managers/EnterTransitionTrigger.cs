@@ -10,6 +10,7 @@ public class EnterTransitionTrigger : MonoBehaviour {
 
 
     private ThirdPersonController tpc;
+    private DungeonRooms sManager;
     private UIKey uiKey;
     [Header("-Select-")]
     public bool lockedDoor;
@@ -17,11 +18,13 @@ public class EnterTransitionTrigger : MonoBehaviour {
     public TransitionToScene transitionToScene;
     [Header("-Transforms-")]
     public Transform posToMoveTo;
-    [Header ("-Text Input-")]
+    [Header("-Text Input-")]
+    public int roomSelectNum;
     public string transitionTo;
 
     void Start() {
         tpc = FindObjectOfType<ThirdPersonController>();
+        sManager = FindObjectOfType<DungeonRooms>();
         uiKey = FindObjectOfType<UIKey>();
     }
 
@@ -90,6 +93,7 @@ public class EnterTransitionTrigger : MonoBehaviour {
         switch (transitionToScene)
         {
             case TransitionToScene.No:
+                sManager.dRS = (DungeonRoomSel)roomSelectNum;
                 tpc.transform.position = posToMoveTo.position;
                 tpc.canMove = true;
                 break;

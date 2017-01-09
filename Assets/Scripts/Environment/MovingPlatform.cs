@@ -20,7 +20,7 @@ public class MovingPlatform : MonoBehaviour {
     }
 
 	void Update () {
-        if (triggeredOnStart)
+        if (triggeredOnStart || active)
         {
             switch (platformState)
             {
@@ -32,42 +32,20 @@ public class MovingPlatform : MonoBehaviour {
                     break;
             }
         }
-        else {
-            if (active)
-            {
-                switch (platformState)
-                {
-                    case PlatformState.Moving:
-                        Moving();
-                        break;
-                    case PlatformState.Idle:
-                        StartCoroutine("Idle");
-                        break;
-                }
-            }
-        }
-        if (isParented)
-        {
-            tpc.transform.SetParent(transform);
-        }
-        else
-        {
-            tpc.transform.SetParent(null);
-        }
     }
 
     void Moving() {
-        if (currentPoint >= nodes.Length)
-        {
-            currentPoint = 0;
-        }
+        transform.position = Vector3.MoveTowards(transform.position, nodes[currentPoint].transform.position, moveSpeed * Time.deltaTime);
 
         if (transform.position == nodes[currentPoint].transform.position)
         {
             currentPoint++;
             platformState = PlatformState.Idle;
+            if (currentPoint >= nodes.Length)
+            {
+                currentPoint = 0;
+            }
         }
-        transform.position = Vector3.MoveTowards(transform.position, nodes[currentPoint].transform.position, moveSpeed * Time.deltaTime);
     }
 
     IEnumerator Idle() {

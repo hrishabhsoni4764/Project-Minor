@@ -6,9 +6,10 @@ public class SwitchEvent : MonoBehaviour {
 
     private CameraMovement cameraM;
     [HideInInspector] public bool isTriggered;
-    /*[HideInInspector] */public bool activateSwitch;
+    [HideInInspector] public bool activateSwitch;
 
     [Header("-Event Panning-")]
+    public bool willPan;
     public Transform target;
     public int height;
     public int panPause;
@@ -29,13 +30,6 @@ public class SwitchEvent : MonoBehaviour {
 
 	void Update () {
 
-        //if (isTriggered)
-        //{
-        //}
-        //else
-        //{
-        //}
-        
         if (!movingPlatform)
         {
             if (!togglePlatform)
@@ -48,12 +42,18 @@ public class SwitchEvent : MonoBehaviour {
                         {
                             isTriggered = true;
                             objectToTrigger.GetComponent<MultiSwitchEvent>().actives[numberKey_multi] = true;
-                            StartCoroutine("WaitForPan");
+                            if (willPan)
+                            {
+                                StartCoroutine("WaitForPan");
+                            }
                         }
                         else
                         {
                             isTriggered = true;
-                            StartCoroutine("WaitForPan");
+                            if (willPan)
+                            {
+                                StartCoroutine("WaitForPan");
+                            }
                             objectToTrigger.GetComponent<DoorEvent>().active = true;
                         }
                     }
@@ -63,7 +63,10 @@ public class SwitchEvent : MonoBehaviour {
             {
                 if (activateSwitch)
                 {
-                    StartCoroutine("WaitForPan");
+                    if (willPan)
+                    {
+                        StartCoroutine("WaitForPan");
+                    }
                     objectToTrigger.GetComponent<TogglePlatform>().isHit = true;
                     activateSwitch = false;
                 }
@@ -75,7 +78,10 @@ public class SwitchEvent : MonoBehaviour {
                 if (!isTriggered)
                 {
                     isTriggered = true;
-                    StartCoroutine("WaitForPan");
+                    if (willPan)
+                    {
+                        StartCoroutine("WaitForPan");
+                    }
                     objectToTrigger.GetComponent<MovingPlatform>().active = true;
                 }
             }

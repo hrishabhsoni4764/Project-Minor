@@ -5,7 +5,7 @@ public class FloorButton : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name == "PushBlock")
+        if (other.CompareTag("Crate"))
         {
             GetComponent<SwitchEvent>().activateSwitch = true;
         }
@@ -13,7 +13,7 @@ public class FloorButton : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (other.name == "PushBlock")
+        if (other.CompareTag("Crate"))
         {
             GetComponent<SwitchEvent>().activateSwitch = false;
         }

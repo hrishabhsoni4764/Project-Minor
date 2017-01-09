@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public enum Dungeon3Rooms {R0,R1,R2,R3,R4,R5,R6}
+public enum DungeonRoomSel {R0,R1,R2,R3,R4,R5,R6}
 public class DungeonRooms : MonoBehaviour {
 
-    public Dungeon3Rooms d3R;
+    public DungeonRoomSel dRS;
 
 	void Start () {
-        d3R = Dungeon3Rooms.R6;
+
 	}
 	
 	void Update () {
@@ -15,7 +15,7 @@ public class DungeonRooms : MonoBehaviour {
 	}
 
     void SceneCheck() {
-        if (SceneManager.GetActiveScene().name == "Dungeon3")
+        if (SceneManager.GetActiveScene().name == "Dungeon2")
         {
             GameObject[] rooms = new GameObject[7];
             rooms[0] = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
@@ -25,9 +25,9 @@ public class DungeonRooms : MonoBehaviour {
             rooms[4] = GameObject.Find("Rooms").transform.GetChild(4).gameObject;
             rooms[5] = GameObject.Find("Rooms").transform.GetChild(5).gameObject;
             rooms[6] = GameObject.Find("Rooms").transform.GetChild(6).gameObject;
-            switch (d3R)
+            switch (dRS)
             {
-                case Dungeon3Rooms.R0:
+                case DungeonRoomSel.R0:
                     rooms[0].SetActive(true);
                     rooms[1].SetActive(false);
                     rooms[2].SetActive(false);
@@ -36,7 +36,7 @@ public class DungeonRooms : MonoBehaviour {
                     rooms[5].SetActive(false);
                     rooms[6].SetActive(false);
                     break;
-                case Dungeon3Rooms.R1:
+                case DungeonRoomSel.R1:
                     rooms[0].SetActive(false);
                     rooms[1].SetActive(true);
                     rooms[2].SetActive(false);
@@ -45,7 +45,7 @@ public class DungeonRooms : MonoBehaviour {
                     rooms[5].SetActive(false);
                     rooms[6].SetActive(false);
                     break;
-                case Dungeon3Rooms.R2:
+                case DungeonRoomSel.R2:
                     rooms[0].SetActive(false);
                     rooms[1].SetActive(false);
                     rooms[2].SetActive(true);
@@ -54,7 +54,7 @@ public class DungeonRooms : MonoBehaviour {
                     rooms[5].SetActive(false);
                     rooms[6].SetActive(false);
                     break;
-                case Dungeon3Rooms.R3:
+                case DungeonRoomSel.R3:
                     rooms[0].SetActive(false);
                     rooms[1].SetActive(false);
                     rooms[2].SetActive(false);
@@ -63,7 +63,7 @@ public class DungeonRooms : MonoBehaviour {
                     rooms[5].SetActive(false);
                     rooms[6].SetActive(false);
                     break;
-                case Dungeon3Rooms.R4:
+                case DungeonRoomSel.R4:
                     rooms[0].SetActive(false);
                     rooms[1].SetActive(false);
                     rooms[2].SetActive(false);
@@ -72,7 +72,7 @@ public class DungeonRooms : MonoBehaviour {
                     rooms[5].SetActive(false);
                     rooms[6].SetActive(false);
                     break;
-                case Dungeon3Rooms.R5:
+                case DungeonRoomSel.R5:
                     rooms[0].SetActive(false);
                     rooms[1].SetActive(false);
                     rooms[2].SetActive(false);
@@ -81,7 +81,7 @@ public class DungeonRooms : MonoBehaviour {
                     rooms[5].SetActive(true);
                     rooms[6].SetActive(false);
                     break;
-                case Dungeon3Rooms.R6:
+                case DungeonRoomSel.R6:
                     rooms[0].SetActive(false);
                     rooms[1].SetActive(false);
                     rooms[2].SetActive(false);
@@ -92,7 +92,7 @@ public class DungeonRooms : MonoBehaviour {
                     break;
             }
         }
-        else if (SceneManager.GetActiveScene().name == "Dungeon2")
+        else if (SceneManager.GetActiveScene().name == "Dungeon3")
         {
 
         }
