@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,12 +23,12 @@ public class TogglePlatform : MonoBehaviour {
     {
         if (isHit) {
             if (hit == 0) {
-                journeyLength = Vector3.Distance(transform.position, togglePoints[hit].position);
+                //journeyLength = Vector3.Distance(transform.position, togglePoints[hit].position);
                 isMoving = true;
                 isHit = false;
                 hit = 1;
             } else {
-                journeyLength = Vector3.Distance(transform.position, togglePoints[hit].position);
+                //journeyLength = Vector3.Distance(transform.position, togglePoints[hit].position);
                 isMoving = true;
                 isHit = false;
                 hit = 0;
@@ -34,14 +36,15 @@ public class TogglePlatform : MonoBehaviour {
         }
 
         if (isMoving) {
-            MoveTowardPoint(togglePoints[hit]);
+            //MoveTowardPoint(togglePoints[hit]);
+            transform.position = Vector3.Lerp(transform.position, togglePoints[hit].position, 1f * Time.deltaTime);
         }
 
 	}
 
     void MoveTowardPoint(Transform togglePoint) {
-        float distCovered = (Time.time - startTime) * 0.0005f;
-        float fracJourney = distCovered / journeyLength;
-        transform.position = Vector3.Lerp(transform.position, togglePoint.position, fracJourney);
+        //float distCovered = (Time.time - startTime) * moveSpeed;
+        //float fracJourney = distCovered / journeyLength;
+        //transform.position = Vector3.Lerp(transform.position, togglePoint.position, fracJourney);
     }
 }

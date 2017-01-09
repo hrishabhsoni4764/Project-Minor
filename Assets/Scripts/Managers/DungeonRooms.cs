@@ -5,10 +5,11 @@ public enum DungeonRoomSel {R0,R1,R2,R3,R4,R5,R6}
 public class DungeonRooms : MonoBehaviour {
 
     public DungeonRoomSel dRS;
+    public int startRoom;
 
 	void Start () {
-
-	}
+        dRS = (DungeonRoomSel)startRoom;
+    }
 	
 	void Update () {
         SceneCheck();
