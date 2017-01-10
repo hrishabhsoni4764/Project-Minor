@@ -31,7 +31,7 @@ public class SwitchEvent : MonoBehaviour {
     public GameObject objectToTrigger;
 
     void Start() {
-        cameraM = FindObjectOfType<CameraMovement>();
+        cameraM = GameManager.instance.cameraM;
     }
 
     void Update()

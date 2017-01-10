@@ -21,8 +21,6 @@ public class CameraMovement : MonoBehaviour
     private Transform playerTrans;
     private ThirdPersonController tpc;
     private CameraPanTrigger cpt;
-    private CloseDoor cameraPT;
-
 
     [Header("-Transforms-")]
     [SerializeField] private Vector3 offset;
@@ -81,9 +79,8 @@ public class CameraMovement : MonoBehaviour
 
     void Start()
     {
-        tpc = FindObjectOfType<ThirdPersonController>();
-        cpt = FindObjectOfType<CameraPanTrigger>();
-        cameraPT = FindObjectOfType<CloseDoor>();
+        tpc = GameManager.instance.tpc;
+        cpt = GameManager.instance.cpt;
 
         playerTrans = tpc.transform;
         transform.position = playerTrans.position + offset;
@@ -109,7 +106,7 @@ public class CameraMovement : MonoBehaviour
     }
 
     void CameraLock() {
-        if (SceneManager.GetActiveScene().name == "BossRoom" && !cameraPT.door.activeInHierarchy)
+        if (SceneManager.GetActiveScene().name == "BossRoom")
         {
             tpc.canLookAround = false;
         }

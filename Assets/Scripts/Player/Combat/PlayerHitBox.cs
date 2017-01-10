@@ -7,8 +7,8 @@ public class PlayerHitBox : MonoBehaviour {
     private EnemyBehaviour enemyB;
 
 	void Start () {
-        playerB = FindObjectOfType<PlayerBehaviour>();
-        enemyB = FindObjectOfType<EnemyBehaviour>();
+        playerB = GameManager.instance.playerB;
+        enemyB = GetComponent<EnemyBehaviour>();
     }
 
     void OnTriggerEnter(Collider other)

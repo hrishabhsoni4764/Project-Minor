@@ -17,9 +17,9 @@ public class PlayerBehaviour : MonoBehaviour {
     private Animator shield;
 
     void Start () {
-        enemyB = FindObjectOfType<EnemyBehaviour>();
-        tpc = FindObjectOfType<ThirdPersonController>();
-        healthScript = FindObjectOfType<Health>();
+        enemyB = GetComponent<EnemyBehaviour>();
+        tpc = GameManager.instance.tpc;
+        healthScript = GameManager.instance.health;
         shield = GameObject.FindGameObjectWithTag("Shield").GetComponent<Animator>();
     }
 	

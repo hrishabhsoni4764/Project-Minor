@@ -10,9 +10,9 @@ public class PushBlock : MonoBehaviour {
     private Rigidbody rb;
 
 	void Start () {
-        buttonInterface = FindObjectOfType<AltWeaponOnScreen>().gameObject;
-        altweapons = FindObjectOfType<AltWeapons>();
-        tpc = FindObjectOfType<ThirdPersonController>();
+        buttonInterface = GameManager.instance.altOS.gameObject;
+        altweapons = GameManager.instance.altWeapons;
+        tpc = GameManager.instance.tpc;
         rb = GetComponent<Rigidbody>();
 	}
 

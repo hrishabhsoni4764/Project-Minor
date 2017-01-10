@@ -6,7 +6,7 @@ public class CameraPosChange : MonoBehaviour {
     private CameraMovement cameraM;
 
     void Start() {
-        cameraM = FindObjectOfType<CameraMovement>();
+        cameraM = GameManager.instance.cameraM;
     }
 
     void OnTriggerEnter(Collider other) {

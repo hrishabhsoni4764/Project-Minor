@@ -6,7 +6,7 @@ public class BowBehaviour : MonoBehaviour {
     private AltWeapons altWeapons;
 
     void Start () {
-        altWeapons = FindObjectOfType<AltWeapons>();
+        altWeapons = GameManager.instance.altWeapons;
     }
 
     void OnTriggerEnter(Collider other)

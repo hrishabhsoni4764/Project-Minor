@@ -8,8 +8,8 @@ public class GrassBehaviour : MonoBehaviour {
     [HideInInspector] public Animator grassAnim;
 
     void Start() {
-        playerB = FindObjectOfType<PlayerBehaviour>();
-        enemyB = FindObjectOfType<EnemyBehaviour>();
+        playerB = GameManager.instance.playerB;
+        enemyB = GetComponent<EnemyBehaviour>();
         grassAnim = GetComponent<Animator>();
     }
 

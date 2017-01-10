@@ -24,8 +24,8 @@ public class AltWeapons : MonoBehaviour {
     [HideInInspector] public WeaponType weaponType;
 
     void Start() {
-        tpc = GetComponent<ThirdPersonController>();
-        altOS = FindObjectOfType<AltWeaponOnScreen>();
+        tpc = GameManager.instance.tpc;
+        altOS = GameManager.instance.altOS;
         hookshot = GetComponent<HookshotController>();
         hookshot.altweapons = this;
         boomerang = GetComponent<BoomerangController>();

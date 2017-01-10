@@ -11,7 +11,7 @@ public class FlyingEnemyBehaviour : EnemyBehaviour
         health = 2;
         atkDamage = 1;
         moveSpeed = 0.5f;
-        player = FindObjectOfType<ThirdPersonController>().gameObject;
+        player = GameManager.instance.tpc.gameObject;
     }
 
     void Update()

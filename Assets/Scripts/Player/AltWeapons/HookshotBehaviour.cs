@@ -7,7 +7,7 @@ public class HookshotBehaviour : MonoBehaviour
 
     void Start()
     {
-        altWeapons = FindObjectOfType<AltWeapons>();
+        altWeapons = GameManager.instance.altWeapons;
     }
 
     void OnTriggerEnter(Collider other)

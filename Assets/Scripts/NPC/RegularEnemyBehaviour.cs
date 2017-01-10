@@ -10,7 +10,7 @@ public class RegularEnemyBehaviour : EnemyBehaviour {
         health = 3;
         atkDamage = 1;
         moveSpeed = 0.5f;
-        player = FindObjectOfType<ThirdPersonController>().gameObject;
+        player = GameManager.instance.tpc.gameObject;
     }
 
     void Update () {

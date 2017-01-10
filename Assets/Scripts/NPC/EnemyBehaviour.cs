@@ -21,7 +21,7 @@ public class EnemyBehaviour : MonoBehaviour {
     private float aggroDissipate = 2.5f;
 
     void Start () {
-        player = FindObjectOfType<ThirdPersonController>().gameObject;
+        player = GameManager.instance.tpc.gameObject;
 	}
 	
 	protected void Update () {

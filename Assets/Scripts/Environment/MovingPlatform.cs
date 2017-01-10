@@ -17,7 +17,7 @@ public class MovingPlatform : MonoBehaviour {
     [HideInInspector] public bool isParented;
 
     void Start() {
-        tpc = FindObjectOfType<ThirdPersonController>();
+        tpc = GameManager.instance.tpc;
     }
 
 	void Update () {

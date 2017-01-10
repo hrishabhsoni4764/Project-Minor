@@ -11,7 +11,7 @@ public class ExitTransitionTrigger : MonoBehaviour {
 
     void Start()
     {
-        tpc = FindObjectOfType<ThirdPersonController>();
+        tpc = GameManager.instance.tpc;
     }
     public void OnTriggerEnter(Collider other)
     {

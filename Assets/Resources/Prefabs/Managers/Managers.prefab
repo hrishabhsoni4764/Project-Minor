@@ -181,11 +181,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f38bc7c2c41e394aa25043779f72007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
   fadeOverlay: {fileID: 0}
   fadeScreen: {fileID: 0}
   buttonPrompt: {fileID: 0}
   dialoguePrompt: {fileID: 0}
+  health: {fileID: 0}
+  tpc: {fileID: 0}
+  cameraM: {fileID: 0}
+  playerB: {fileID: 0}
+  altOS: {fileID: 0}
+  altWeapons: {fileID: 0}
+  hookshotCtrl: {fileID: 0}
+  movingP: {fileID: 0}
+  cpt: {fileID: 0}
+  sManager: {fileID: 114635795123210910}
+  uiKey: {fileID: 0}
 --- !u!114 &11435172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,7 +229,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4475528320512154}
-  - component: {fileID: 114006255427952806}
+  - component: {fileID: 114635795123210910}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -240,7 +250,7 @@ Transform:
   m_Father: {fileID: 427766}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114006255427952806
+--- !u!114 &114635795123210910
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -251,3 +261,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553a931ffa7f19241bb39b5bad922884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dRS: 0
+  startRoom: 6

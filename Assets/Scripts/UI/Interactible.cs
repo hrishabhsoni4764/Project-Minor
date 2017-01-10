@@ -19,7 +19,7 @@ public class Interactible : MonoBehaviour {
         chestLoot = GetComponent<ChestLoot>();
         ett = GetComponent<EnterTransitionTrigger>();
         villagerB = GetComponent<VillagerBehaviour>();
-        altOS = FindObjectOfType<AltWeaponOnScreen>();
+        altOS = GameManager.instance.altOS;
     }
 
     void Update() {

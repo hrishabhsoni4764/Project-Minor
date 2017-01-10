@@ -12,8 +12,8 @@ public class Raycasts : MonoBehaviour {
     [HideInInspector] public bool isGrounded;
 
     void Start() {
-        movingP = FindObjectOfType<MovingPlatform>();
-        tpc = FindObjectOfType<ThirdPersonController>();
+        movingP = GameManager.instance.movingP;
+        tpc = GameManager.instance.tpc;
     }
 
     void Update()

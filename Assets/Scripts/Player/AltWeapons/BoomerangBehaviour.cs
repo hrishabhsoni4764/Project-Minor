@@ -7,8 +7,8 @@ public class BoomerangBehaviour : MonoBehaviour {
     private EnemyBehaviour enemyB;
 
     void Start() {
-        altWeapons = FindObjectOfType<AltWeapons>();
-        enemyB = FindObjectOfType<EnemyBehaviour>();
+        altWeapons = GameManager.instance.altWeapons;
+        enemyB = GetComponent<EnemyBehaviour>();
     }
 
     void Update() {

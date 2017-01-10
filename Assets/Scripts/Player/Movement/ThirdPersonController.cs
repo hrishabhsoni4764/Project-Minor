@@ -22,7 +22,7 @@ public class ThirdPersonController : MonoBehaviour {
     }
 
     void Awake() {
-        hookshotCtrl = GetComponent<HookshotController>();
+        hookshotCtrl = GameManager.instance.hookshotCtrl;
         raycasts = GetComponent<Raycasts>();       
     }
 

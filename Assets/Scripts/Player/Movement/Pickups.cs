@@ -6,8 +6,9 @@ public class Pickups : MonoBehaviour {
     private PlayerBehaviour playerB;
 
 	void Start () {
-        playerB = FindObjectOfType<PlayerBehaviour>();
-	}
+        playerB = GameManager.instance.playerB;
+
+    }
 
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Heart")) {

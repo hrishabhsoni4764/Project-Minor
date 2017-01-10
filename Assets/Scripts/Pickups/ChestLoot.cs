@@ -25,9 +25,9 @@ public class ChestLoot : MonoBehaviour {
     private AltWeaponOnScreen altOS;
 
     void Start() {
-        uiKey = FindObjectOfType<UIKey>();
-        cameraM = FindObjectOfType<CameraMovement>();
-        altOS = FindObjectOfType<AltWeaponOnScreen>();
+        uiKey = GameManager.instance.uiKey;
+        cameraM = GameManager.instance.cameraM;
+        altOS = GameManager.instance.altOS;
     }
 
     void OnTriggerStay(Collider other)

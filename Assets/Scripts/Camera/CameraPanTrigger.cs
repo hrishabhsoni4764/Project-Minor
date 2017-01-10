@@ -10,7 +10,7 @@ public class CameraPanTrigger : MonoBehaviour {
     public int pause;
 
 	void Start () {
-        cameraM = FindObjectOfType<CameraMovement>();
+        cameraM = GameManager.instance.cameraM;
 	}
 
     void OnTriggerEnter(Collider other) {

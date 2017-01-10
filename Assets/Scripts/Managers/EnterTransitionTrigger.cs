@@ -23,9 +23,9 @@ public class EnterTransitionTrigger : MonoBehaviour {
     public string transitionTo;
 
     void Start() {
-        tpc = FindObjectOfType<ThirdPersonController>();
-        sManager = FindObjectOfType<DungeonRooms>();
-        uiKey = FindObjectOfType<UIKey>();
+        tpc = GameManager.instance.tpc;
+        sManager = GameManager.instance.sManager;
+        uiKey = GameManager.instance.uiKey;
     }
 
     void OnTriggerStay(Collider other)

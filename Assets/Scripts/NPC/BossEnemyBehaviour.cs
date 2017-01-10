@@ -19,7 +19,7 @@ public class BossEnemyBehaviour : MonoBehaviour {
     [HideInInspector] public bool isVulnarable;
 
 	void Start () {
-        tpc = FindObjectOfType<ThirdPersonController>();
+        tpc = GameManager.instance.tpc;
         rb = GetComponent<Rigidbody>();
         bossState = BossState.Standby;
     }

@@ -8,10 +8,10 @@ public class AltWeaponUIOne : MonoBehaviour {
     [HideInInspector] public bool active;
 
 	void Start () {
-        altWeapons = FindObjectOfType<AltWeapons>();
-	}
-	
-	void Update () {
+        altWeapons = GameManager.instance.altWeapons;
+    }
+
+    void Update () {
         if (active) {
             altWeapons.weaponType = AltWeapons.WeaponType.Boomerang;
             transform.FindChild("AltWeapon").GetComponent<Image>().sprite = transform.FindChild("Boom").GetComponent<Image>().sprite;

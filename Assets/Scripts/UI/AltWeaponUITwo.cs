@@ -10,7 +10,7 @@ public class AltWeaponUITwo : MonoBehaviour {
     [HideInInspector] public bool active;
 
 	void Start () {
-        altWeapons = FindObjectOfType<AltWeapons>();
+        altWeapons = GameManager.instance.altWeapons;
 	}
 	
 	void Update () {

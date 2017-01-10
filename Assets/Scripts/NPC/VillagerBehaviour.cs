@@ -15,10 +15,11 @@ public class VillagerBehaviour : MonoBehaviour {
 
     void Start () {
         dialoguePrompt = GameManager.instance.dialoguePrompt;
-        player = FindObjectOfType<ThirdPersonController>();
+        player = GameManager.instance.tpc;
         interactible = GetComponent<Interactible>();
-        cameraM = FindObjectOfType<CameraMovement>();
-	}
+        cameraM = GameManager.instance.cameraM;
+
+    }
 
     void LateUpdate() {
         if (isLooking) {
