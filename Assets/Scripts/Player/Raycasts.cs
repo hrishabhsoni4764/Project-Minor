@@ -42,19 +42,20 @@ public class Raycasts : MonoBehaviour {
                 isGrounded = false;
             }
         }
-
-            //    //PushBlockParenting//
-            //    if (transform.parent != tpc.transform) {
-            //        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1, togglePlatformLayer))
-            //        {
-            //            transform.SetParent(hit.transform);
-            //        }
-            //        else
-            //        {
-            //            transform.SetParent(null);
-            //        }
-            //    }
-            //}
+        else {
+            //PushBlockParenting//
+            if (transform.parent != tpc.transform)
+            {
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, 1, movingPlatformLayer))
+                {
+                    transform.SetParent(hit.transform);
+                }
+                else
+                {
+                    transform.SetParent(null);
+                }
+            }
+        }
     }
 
     public void Kill()
