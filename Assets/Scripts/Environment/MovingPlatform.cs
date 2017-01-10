@@ -4,9 +4,10 @@ using System.Collections;
 public class MovingPlatform : MonoBehaviour {
 
     public bool triggeredOnStart;
+    [Tooltip("If enabled, moving platform will continue immidiately after reach next node")] public bool continuous;
     public GameObject[] nodes;
-
-    /*[HideInInspector] */public bool active;
+        
+    [HideInInspector] public bool active;
     private enum PlatformState { Moving, Idle }
     private float moveSpeed = 3f;
     private int currentPoint;
@@ -40,7 +41,10 @@ public class MovingPlatform : MonoBehaviour {
         if (transform.position == nodes[currentPoint].transform.position)
         {
             currentPoint++;
-            platformState = PlatformState.Idle;
+            if (!continuous)
+            {
+                platformState = PlatformState.Idle;
+            }
             if (currentPoint >= nodes.Length)
             {
                 currentPoint = 0;
