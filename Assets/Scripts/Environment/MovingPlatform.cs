@@ -9,7 +9,7 @@ public class MovingPlatform : MonoBehaviour {
         
     [HideInInspector] public bool active;
     private enum PlatformState { Moving, Idle }
-    private float moveSpeed = 3f;
+    [SerializeField]private float moveSpeed = 3f;
     private int currentPoint;
     private PlatformState platformState;
     private ThirdPersonController tpc;
