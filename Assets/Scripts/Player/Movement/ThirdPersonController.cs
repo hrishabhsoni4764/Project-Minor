@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ThirdPersonController : MonoBehaviour {
 
-    /*[HideInInspector]*/ public float defaultSpeed;
+    [HideInInspector] public float defaultSpeed;
     [HideInInspector] public float currentSpeed;
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool canLookAround = true;

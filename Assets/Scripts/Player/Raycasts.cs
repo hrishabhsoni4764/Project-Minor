@@ -22,7 +22,7 @@ public class Raycasts : MonoBehaviour {
         if (!GetComponent<PushBlock>())
         {
             //MovingPlatform//
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 3, movingPlatformLayer))
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.5f, movingPlatformLayer))
             {
                 transform.SetParent(hit.collider.transform);
             }
@@ -32,13 +32,17 @@ public class Raycasts : MonoBehaviour {
             }
 
             //KillBox//
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1, groundLayer))
+            if (Physics.Raycast(transform.position + new Vector3(0.5f, 0f, 0f), Vector3.down, out hit, 1.5f, groundLayer) || Physics.Raycast(transform.position + new Vector3(-0.5f, 0f, 0f), Vector3.down, out hit, 1.5f, groundLayer) || Physics.Raycast(transform.position + new Vector3(0f, 0f, 0.5f), Vector3.down, out hit, 1.5f, groundLayer) || Physics.Raycast(transform.position + new Vector3(0f, 0f, -0.5f), Vector3.down, out hit, 1.5f, groundLayer))
             {
                 isGrounded = true;
+                tpc.canMove = true;
+                tpc.canLookAround = true;
                 lastPosition = transform.position;
             }
             else
             {
+                tpc.canMove = false;
+                tpc.canLookAround = false;
                 isGrounded = false;
             }
         }

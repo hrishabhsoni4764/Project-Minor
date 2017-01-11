@@ -12,6 +12,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public int curHealth;
 
     private int atkDamage = 1;
+    private bool canUseSword;
     private EnemyBehaviour enemyB;
     private Health healthScript;
     private Animator shield;
@@ -59,7 +60,7 @@ public class PlayerBehaviour : MonoBehaviour {
     }
 
     void Attack() {
-        if (Input.GetButtonDown("Sword"))
+        if (Input.GetButtonDown("Sword") && canUseSword)
         {
             tpc.gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
             Animator sword = GameObject.FindGameObjectWithTag("Sword").GetComponent<Animator>();
@@ -73,9 +74,14 @@ public class PlayerBehaviour : MonoBehaviour {
         if (shieldIsUp)
         {
             shield.SetBool("shieldIsUp", true);
+            tpc.defaultSpeed = 4f;
+            canUseSword = false;
+            
         }
         else {
             shield.SetBool("shieldIsUp", false);
+            tpc.defaultSpeed = 7f;
+            canUseSword = true; ;
         }
     }
 
