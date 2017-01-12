@@ -15,7 +15,14 @@ public class Interactible : MonoBehaviour {
     public InteractibleType interactibleType;
 
     void Start() {
-        buttonCanvas = transform.FindChild("Canvas").gameObject;
+        if (transform.gameObject.name != "Canvas")
+        {
+            buttonCanvas = transform.FindChild("Canvas").gameObject;
+        }
+        else
+        {
+            buttonCanvas = transform.gameObject;
+        }
         chestLoot = GetComponent<ChestLoot>();
         ett = GetComponent<EnterTransitionTrigger>();
         villagerB = GetComponent<VillagerBehaviour>();
@@ -25,79 +32,82 @@ public class Interactible : MonoBehaviour {
     void Update() {
         if (buttonCanvas != null)
         {
-            buttonCanvas.transform.FindChild("Image").forward = Camera.main.transform.forward * -1;
-            buttonCanvas.transform.FindChild("Speechbubble").forward = Camera.main.transform.forward * -1;
+            if (interactibleType == InteractibleType.Door)
+            {
+                transform.GetChild(0).forward = Camera.main.transform.forward * -1;
+                transform.GetChild(1).forward = Camera.main.transform.forward * -1;
+            }
+            else
+            {
+                buttonCanvas.transform.FindChild("Image").forward = Camera.main.transform.forward * -1;
+                buttonCanvas.transform.FindChild("Speechbubble").forward = Camera.main.transform.forward * -1;
+            }
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        switch (interactibleType)
+        if (other.GetComponent<ThirdPersonController>() && !other.GetComponent<SphereCollider>())
         {
-            case InteractibleType.Chest:
-                if (!chestLoot.chestLooted)
-                {
-                    if (other.GetComponent<ThirdPersonController>() && !other.GetComponent<SphereCollider>())
+            switch (interactibleType)
+            {
+                case InteractibleType.Chest:
+                    if (!chestLoot.chestLooted)
                     {
                         buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 1);
                         altOS.transform.GetChild(1).gameObject.SetActive(true);
                     }
-                }
-                else {
-                    buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
-                    altOS.transform.GetChild(1).gameObject.SetActive(false);
-                }
-                break;
-            case InteractibleType.NPC:
-                if (other.GetComponent<ThirdPersonController>() && !other.GetComponent<SphereCollider>())
-                {
-                    buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 1);
-                    altOS.transform.GetChild(0).gameObject.SetActive(true);
-                }
-                break;
-            case InteractibleType.Door:
-                if (ett.enablePrompt)
-                {
-                    buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 1);
-                    altOS.transform.GetChild(1).gameObject.SetActive(true);
-                }
-                break;
-        }
-        
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        switch (interactibleType)
-        {
-            case InteractibleType.Chest:
-                if (!chestLoot.chestLooted)
-                {
-                    if (other.GetComponent<ThirdPersonController>() && !other.GetComponent<SphereCollider>())
+                    else
                     {
                         buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
                         altOS.transform.GetChild(1).gameObject.SetActive(false);
                     }
-                }
-                else {
-                    buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
-                    altOS.transform.GetChild(1).gameObject.SetActive(false);
-                }
-                break;
-            case InteractibleType.NPC:
-                if (other.GetComponent<ThirdPersonController>() && !other.GetComponent<SphereCollider>())
-                {
+                    break;
+                case InteractibleType.NPC:
+                    buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 1);
+                    altOS.transform.GetChild(0).gameObject.SetActive(true);
+                    break;
+                case InteractibleType.Door:
+                    if (transform.gameObject.name == "Canvas")
+                    {
+                        transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 1);
+                        altOS.transform.GetChild(1).gameObject.SetActive(true);
+                    }
+                    break;
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<ThirdPersonController>() && !other.GetComponent<SphereCollider>()) {
+            switch (interactibleType)
+            {
+                case InteractibleType.Chest:
+                    if (!chestLoot.chestLooted)
+                    {
+                        buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
+                        altOS.transform.GetChild(1).gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
+                        altOS.transform.GetChild(1).gameObject.SetActive(false);
+                    }
+                    break;
+                case InteractibleType.NPC:
                     buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
                     altOS.transform.GetChild(0).gameObject.SetActive(false);
-                }
-                break;
-            case InteractibleType.Door:
-                if (ett.enablePrompt)
-                {
-                    buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
-                    altOS.transform.GetChild(1).gameObject.SetActive(false);
-                }
-                break;
+                    break;
+                case InteractibleType.Door:
+                    if (transform.gameObject.name == "Canvas")
+                    {
+                        transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
+                        altOS.transform.GetChild(1).gameObject.SetActive(false);
+                        transform.GetChild(1).gameObject.SetActive(false);
+                    }
+                    break;
+            }
         }
     }
 

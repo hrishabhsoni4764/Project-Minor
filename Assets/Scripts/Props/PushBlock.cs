@@ -9,6 +9,8 @@ public class PushBlock : MonoBehaviour {
     private ThirdPersonController tpc;
     private Rigidbody rb;
 
+    public GameObject originParent;
+
 	void Start () {
         buttonInterface = GameManager.instance.altOS.gameObject;
         altweapons = GameManager.instance.altWeapons;
@@ -19,7 +21,7 @@ public class PushBlock : MonoBehaviour {
     void Update() {
         if (Input.GetButtonUp("Interact")) {
             if (transform.parent.gameObject.layer != 10) {
-                transform.parent.SetParent(null);
+                transform.parent.SetParent(originParent.transform);
             }
             altweapons.swordAndShieldShowing = true;
             altweapons.canUseAltWeapon = true;

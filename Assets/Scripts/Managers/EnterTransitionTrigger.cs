@@ -3,24 +3,23 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum EnablePrompt { On, Off }
-public enum LockedDoor { No, Yes }
-public enum TransitionToScene { No, Yes }
 public class EnterTransitionTrigger : MonoBehaviour {
 
 
     private ThirdPersonController tpc;
     private DungeonRooms sManager;
     private UIKey uiKey;
+
     [Header("-Select-")]
-    public bool lockedDoor;
-    public bool enablePrompt;
-    public TransitionToScene transitionToScene;
+    [Tooltip("If enabled, you will need at least one key to open")] public bool lockedDoor;
+    [Tooltip ("If enabled, you will switch the scene to another (-Fill in scene name in transitionTo-)")] public bool transitionToScene;
+
     [Header("-Transforms-")]
-    public Transform posToMoveTo;
+    [Tooltip("Position in this scene you will move to (-Only if transitionToScene is disabled-")] public Transform posToMoveTo;
+
     [Header("-Text Input-")]
-    public int roomSelectNum;
-    public string transitionTo;
+    [Tooltip("Indicator for the game to know to which room you are going")] public int roomSelectNum;
+    [Tooltip("Name of scene you transition to")] public string transitionTo;
 
     void Start() {
         tpc = GameManager.instance.tpc;
@@ -33,44 +32,41 @@ public class EnterTransitionTrigger : MonoBehaviour {
         if (other.GetComponent<ThirdPersonController>())
         {
             {
-                if (lockedDoor) {
-                    if (this.CompareTag("BossDoor"))
+                if (Input.GetButtonDown("Interact"))
+                {
+                    if (lockedDoor)
                     {
-                        if (uiKey.gotBossKey)
+                        if (this.CompareTag("BossDoor"))
                         {
-                            uiKey.gotBossKey = false;
-                            tpc.canMove = false;
-                            StartCoroutine("EnterHouseDelay");
+                            if (uiKey.gotBossKey)
+                            {
+                                uiKey.gotBossKey = false;
+                                tpc.canMove = false;
+                                StartCoroutine("EnterHouseDelay");
+                            }
+                            else
+                            {
+                                GameObject dialoguePrompt = GameManager.instance.dialoguePrompt;
+                                dialoguePrompt.SetActive(true);
+                                dialoguePrompt.GetComponentInChildren<Text>().text = ("Door is Locked...");
+                            }
                         }
                         else
                         {
-                            GameObject dialoguePrompt = GameManager.instance.dialoguePrompt;
-                            dialoguePrompt.SetActive(true);
-                            dialoguePrompt.GetComponentInChildren<Text>().text = ("Door is Locked...");
-                        }
-                    }
-                    else
-                    {
-                        if (UIKey.keyAmount > 0)
-                        {
-                            UIKey.keyAmount--;
-                            tpc.canMove = false;
-                            StartCoroutine("EnterHouseDelay");
-                        }
-                        else {
-                            GameObject dialoguePrompt = GameManager.instance.dialoguePrompt;
-                            dialoguePrompt.SetActive(true);
-                            dialoguePrompt.GetComponentInChildren<Text>().text = ("Door is Locked...");
-                        }
-                    }
-                }
-                else {
-                    if(enablePrompt)
-                    {
-                        if (Input.GetButtonDown("Interact"))
-                        {
-                            tpc.canMove = false;
-                            StartCoroutine("EnterHouseDelay");
+                            if (UIKey.keyAmount > 0)
+                            {
+                                if (transform.parent.FindChild("Canvas").GetChild(1).gameObject.activeSelf)
+                                {
+                                    transform.parent.FindChild("Canvas").GetChild(1).gameObject.SetActive(false);
+                                }
+                                UIKey.keyAmount--;
+                                this.lockedDoor = false;
+                                tpc.canMove = false;
+                                StartCoroutine("EnterHouseDelay");
+                            }
+                            else {
+                                transform.parent.FindChild("Canvas").GetChild(1).gameObject.SetActive(true);
+                            }
                         }
                     }
                     else
@@ -78,7 +74,6 @@ public class EnterTransitionTrigger : MonoBehaviour {
                         tpc.canMove = false;
                         StartCoroutine("EnterHouseDelay");
                     }
-                        
                 }
             }
         }
@@ -90,16 +85,15 @@ public class EnterTransitionTrigger : MonoBehaviour {
         fadeScreenAnim.SetInteger("fadeScreen", 1);
         yield return new WaitForSeconds(0.6f);
         fadeScreenAnim.SetInteger("fadeScreen", 0);
-        switch (transitionToScene)
+        if (transitionToScene)
         {
-            case TransitionToScene.No:
-                sManager.dRS = (DungeonRoomSel)roomSelectNum;
-                tpc.transform.position = posToMoveTo.position;
-                tpc.canMove = true;
-                break;
-            case TransitionToScene.Yes:
-                SceneManager.LoadScene(transitionTo);
-                break;
+            SceneManager.LoadScene(transitionTo);
+        }
+        else
+        {
+            sManager.dRS = (DungeonRoomSel)roomSelectNum;
+            tpc.transform.position = posToMoveTo.position;
+            tpc.canMove = true;
         }
     }
 }
