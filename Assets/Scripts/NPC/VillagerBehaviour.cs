@@ -6,7 +6,6 @@ public class VillagerBehaviour : MonoBehaviour {
 
     public string dialogueTextInput;
 
-    private GameObject dialoguePrompt;
     private ThirdPersonController player;
     private Interactible interactible;
     private CameraMovement cameraM;
@@ -14,7 +13,6 @@ public class VillagerBehaviour : MonoBehaviour {
     [HideInInspector] public bool isLooking = false, isTalking = false, isInRange = false;
 
     void Start () {
-        dialoguePrompt = GameManager.instance.dialoguePrompt;
         player = GameManager.instance.tpc;
         interactible = GetComponent<Interactible>();
         cameraM = GameManager.instance.cameraM;
@@ -35,7 +33,6 @@ public class VillagerBehaviour : MonoBehaviour {
                 player.canMove = false;
                 isTalking = true;
                 interactible.buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
-                //interactible.TextFading(0.01f);
                 
                 ActivateDialogueSettings(1);
             }
@@ -44,7 +41,6 @@ public class VillagerBehaviour : MonoBehaviour {
                 player.canMove = true;
                 isTalking = false;
                 interactible.buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 1);
-                //interactible.TextFading(0.01f);
                 ActivateDialogueSettings(0);
             }
             CutsceneCamera();

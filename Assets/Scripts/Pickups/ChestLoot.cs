@@ -24,10 +24,13 @@ public class ChestLoot : MonoBehaviour {
     private CameraMovement cameraM;
     private AltWeaponOnScreen altOS;
 
+    [HideInInspector] public GameObject dialoguePrompt;
+
     void Start() {
         uiKey = GameManager.instance.uiKey;
         cameraM = GameManager.instance.cameraM;
         altOS = GameManager.instance.altOS;
+        dialoguePrompt = transform.GetChild(0).GetChild(1).gameObject;
     }
 
     void OnTriggerStay(Collider other)
@@ -41,7 +44,9 @@ public class ChestLoot : MonoBehaviour {
                     switch (lootType)
                     {
                         case LootTypes.Key:
-                            StartCoroutine("DialogueTimer", lootText);
+                            dialoguePrompt.SetActive(true);
+                            dialoguePrompt.GetComponent<Animator>().SetInteger("speechBubble", 1);
+                            StartCoroutine("TextDelay", lootText);
                             if (cameraPan)
                             {
                                 StartCoroutine("CameraPan");
@@ -50,7 +55,9 @@ public class ChestLoot : MonoBehaviour {
                             chestLooted = true;
                             break;
                         case LootTypes.Bosskey:
-                            StartCoroutine("DialogueTimer", lootText);
+                            dialoguePrompt.SetActive(true);
+                            dialoguePrompt.GetComponent<Animator>().SetInteger("speechBubble", 1);
+                            StartCoroutine("TextDelay", lootText);
                             if (cameraPan)
                             {
                                 StartCoroutine("CameraPan");
@@ -59,7 +66,9 @@ public class ChestLoot : MonoBehaviour {
                             chestLooted = true;
                             break;
                         case LootTypes.AltWeapon:
-                            StartCoroutine("DialogueTimer", lootText);
+                            dialoguePrompt.SetActive(true);
+                            dialoguePrompt.GetComponent<Animator>().SetInteger("speechBubble", 1);
+                            StartCoroutine("TextDelay", lootText);
                             if (cameraPan)
                             {
                                 StartCoroutine("CameraPan");
@@ -79,15 +88,6 @@ public class ChestLoot : MonoBehaviour {
         }
     }
 
-    IEnumerator DialogueTimer(string text)
-    {
-        GameObject dialoguePrompt = GameManager.instance.dialoguePrompt;
-        dialoguePrompt.SetActive(true);
-        dialoguePrompt.GetComponentInChildren<Text>().text = (text);
-        yield return new WaitForSeconds(2);
-        dialoguePrompt.SetActive(false);
-    }
-
     IEnumerator CameraPan() {
         cameraM.panTarget = panTarget;
         cameraM.panHeight = height;
@@ -96,5 +96,10 @@ public class ChestLoot : MonoBehaviour {
         yield return new WaitForSeconds(animPause);
         objectToTrigger.GetComponent<DoorEvent>().active = true;
         objectToTrigger.GetComponent<DoorEvent>().posToMoveTo = targetMove;
+    }
+
+    IEnumerator TextDelay(string lootText) {
+        yield return new WaitForSeconds(0.3f);
+        dialoguePrompt.GetComponentInChildren<Text>().text = lootText;
     }
 }

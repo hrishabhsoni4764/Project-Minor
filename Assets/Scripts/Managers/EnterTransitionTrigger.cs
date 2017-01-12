@@ -40,15 +40,17 @@ public class EnterTransitionTrigger : MonoBehaviour {
                         {
                             if (uiKey.gotBossKey)
                             {
+                                if (transform.parent.FindChild("Canvas").GetChild(1).gameObject.activeSelf)
+                                {
+                                    transform.parent.FindChild("Canvas").GetChild(1).gameObject.SetActive(false);
+                                }
                                 uiKey.gotBossKey = false;
                                 tpc.canMove = false;
                                 StartCoroutine("EnterHouseDelay");
                             }
                             else
                             {
-                                GameObject dialoguePrompt = GameManager.instance.dialoguePrompt;
-                                dialoguePrompt.SetActive(true);
-                                dialoguePrompt.GetComponentInChildren<Text>().text = ("Door is Locked...");
+                                transform.parent.FindChild("Canvas").GetChild(1).gameObject.SetActive(true);
                             }
                         }
                         else

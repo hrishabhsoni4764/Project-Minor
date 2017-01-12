@@ -37,6 +37,11 @@ public class Interactible : MonoBehaviour {
                 transform.GetChild(0).forward = Camera.main.transform.forward * -1;
                 transform.GetChild(1).forward = Camera.main.transform.forward * -1;
             }
+            else if (interactibleType == InteractibleType.Chest)
+            {
+                transform.GetChild(0).GetChild(0).forward = Camera.main.transform.forward * -1;
+                transform.GetChild(0).GetChild(1).forward = Camera.main.transform.forward * -1;
+            }
             else
             {
                 buttonCanvas.transform.FindChild("Image").forward = Camera.main.transform.forward * -1;
@@ -84,6 +89,7 @@ public class Interactible : MonoBehaviour {
             switch (interactibleType)
             {
                 case InteractibleType.Chest:
+                    chestLoot.dialoguePrompt.SetActive(false);
                     if (!chestLoot.chestLooted)
                     {
                         buttonCanvas.transform.GetChild(0).GetComponent<Animator>().SetInteger("interactButton", 0);
