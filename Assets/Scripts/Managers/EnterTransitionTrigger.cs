@@ -10,6 +10,8 @@ public class EnterTransitionTrigger : MonoBehaviour {
     private DungeonRooms sManager;
     private UIKey uiKey;
 
+    public int complete;
+
     [Header("-Select-")]
     [Tooltip("If enabled, you will need at least one key to open")] public bool lockedDoor;
     [Tooltip ("If enabled, you will switch the scene to another (-Fill in scene name in transitionTo-)")] public bool transitionToScene;
@@ -46,6 +48,7 @@ public class EnterTransitionTrigger : MonoBehaviour {
                                 }
                                 uiKey.gotBossKey = false;
                                 tpc.canMove = false;
+                                SpawnPosition.dungeonsBeaten = complete;
                                 StartCoroutine("EnterHouseDelay");
                             }
                             else

@@ -18,10 +18,7 @@ public class GameManager : MonoBehaviour {
     }
 
     [Header("-Prefabs-")]
-    public GameObject fadeOverlay;
     public GameObject fadeScreen;
-    public GameObject buttonPrompt;
-    public GameObject dialoguePrompt;
     [Header("-Scripts-")]
     public Health health;
     public ThirdPersonController tpc;

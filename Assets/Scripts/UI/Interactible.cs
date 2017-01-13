@@ -17,7 +17,10 @@ public class Interactible : MonoBehaviour {
     void Start() {
         if (transform.gameObject.name != "Canvas")
         {
-            buttonCanvas = transform.FindChild("Canvas").gameObject;
+            if (transform.parent.name != "BossGate")
+            {
+                buttonCanvas = transform.FindChild("Canvas").gameObject;
+            }
         }
         else
         {

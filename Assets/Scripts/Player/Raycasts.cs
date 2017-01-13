@@ -6,6 +6,7 @@ public class Raycasts : MonoBehaviour {
     private Vector3 lastPosition;
     private MovingPlatform movingP;
     private ThirdPersonController tpc;
+    private AltWeapons altWeapon;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask movingPlatformLayer;
 
@@ -14,6 +15,7 @@ public class Raycasts : MonoBehaviour {
     void Start() {
         movingP = GameManager.instance.movingP;
         tpc = GameManager.instance.tpc;
+        altWeapon = GameManager.instance.altWeapons;
     }
 
     void Update()
@@ -37,12 +39,14 @@ public class Raycasts : MonoBehaviour {
                 isGrounded = true;
                 tpc.canMove = true;
                 tpc.canLookAround = true;
+                altWeapon.canUseAltWeapon = true;
                 lastPosition = transform.position;
             }
             else
             {
                 tpc.canMove = false;
                 tpc.canLookAround = false;
+                altWeapon.canUseAltWeapon = false;
                 isGrounded = false;
             }
         }
@@ -64,6 +68,17 @@ public class Raycasts : MonoBehaviour {
 
     public void Kill()
     {
-        transform.position = lastPosition;
+        StartCoroutine("RespawnDelay");
+    }
+
+    IEnumerator RespawnDelay() {
+        Animator fadeScreenAnim = GameManager.instance.fadeScreen.GetComponent<Animator>();
+        fadeScreenAnim.SetInteger("fadeScreen", 1);
+        yield return new WaitForSeconds(0.6f);
+        fadeScreenAnim.SetInteger("fadeScreen", 0);
+        //yield return new WaitForSeconds(1);
+        Vector3 delta = (lastPosition - transform.position).normalized;
+        delta.y = 0;
+        transform.position = lastPosition + delta * 3f;
     }
 }

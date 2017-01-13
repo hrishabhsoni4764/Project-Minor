@@ -14,12 +14,14 @@ public class PlayerBehaviour : MonoBehaviour {
     private int atkDamage = 1;
     private bool canUseSword;
     private EnemyBehaviour enemyB;
+    private AltWeapons altWeapons;
     private Health healthScript;
     private Animator shield;
 
     void Start () {
         enemyB = GetComponent<EnemyBehaviour>();
         tpc = GameManager.instance.tpc;
+        altWeapons = GameManager.instance.altWeapons;
         healthScript = GameManager.instance.health;
         shield = GameObject.FindGameObjectWithTag("Shield").GetComponent<Animator>();
     }
@@ -75,12 +77,14 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             shield.SetBool("shieldIsUp", true);
             tpc.defaultSpeed = 4f;
+            altWeapons.canUseAltWeapon = false;
             canUseSword = false;
             
         }
         else {
             shield.SetBool("shieldIsUp", false);
             tpc.defaultSpeed = 7f;
+            altWeapons.canUseAltWeapon = true;
             canUseSword = true; ;
         }
     }

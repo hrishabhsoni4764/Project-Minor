@@ -181,10 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f38bc7c2c41e394aa25043779f72007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOverlay: {fileID: 0}
   fadeScreen: {fileID: 0}
-  buttonPrompt: {fileID: 0}
-  dialoguePrompt: {fileID: 0}
   health: {fileID: 0}
   tpc: {fileID: 0}
   cameraM: {fileID: 0}
@@ -275,4 +272,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dRS: 0
-  startRoom: 6
+  startRoom: 0
