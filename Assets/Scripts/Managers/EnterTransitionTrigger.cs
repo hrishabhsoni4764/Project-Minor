@@ -96,6 +96,7 @@ public class EnterTransitionTrigger : MonoBehaviour {
         }
         else
         {
+            sManager.activate = true;
             sManager.dRS = (DungeonRoomSel)roomSelectNum;
             tpc.transform.position = posToMoveTo.position;
             tpc.canMove = true;

@@ -6,26 +6,31 @@ public class DungeonRooms : MonoBehaviour {
 
     [HideInInspector] public DungeonRoomSel dRS;
     public int startRoom;
+    [HideInInspector] public bool activate;
 
 	void Start () {
         dRS = (DungeonRoomSel)startRoom;
     }
 	
 	void Update () {
-        SceneCheck();
+        if (activate)
+        {
+            SceneCheck();
+            activate = false;
+        }
 	}
 
     void SceneCheck() {
         if (SceneManager.GetActiveScene().name == "Dungeon2")
         {
             GameObject[] rooms = new GameObject[7];
-            rooms[0] = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
-            rooms[1] = GameObject.Find("Rooms").transform.GetChild(1).gameObject;
-            rooms[2] = GameObject.Find("Rooms").transform.GetChild(2).gameObject;
-            rooms[3] = GameObject.Find("Rooms").transform.GetChild(3).gameObject;
-            rooms[4] = GameObject.Find("Rooms").transform.GetChild(4).gameObject;
-            rooms[5] = GameObject.Find("Rooms").transform.GetChild(5).gameObject;
-            rooms[6] = GameObject.Find("Rooms").transform.GetChild(6).gameObject;
+            rooms[0] = GameManager.instance.currentRooms.transform.GetChild(0).gameObject;
+            rooms[1] = GameManager.instance.currentRooms.transform.GetChild(1).gameObject;
+            rooms[2] = GameManager.instance.currentRooms.transform.GetChild(2).gameObject;
+            rooms[3] = GameManager.instance.currentRooms.transform.GetChild(3).gameObject;
+            rooms[4] = GameManager.instance.currentRooms.transform.GetChild(4).gameObject;
+            rooms[5] = GameManager.instance.currentRooms.transform.GetChild(5).gameObject;
+            rooms[6] = GameManager.instance.currentRooms.transform.GetChild(6).gameObject;
             switch (dRS)
             {
                 case DungeonRoomSel.R0:
@@ -96,12 +101,12 @@ public class DungeonRooms : MonoBehaviour {
         else if (SceneManager.GetActiveScene().name == "Dungeon1")
         {
             GameObject[] rooms = new GameObject[6];
-            rooms[0] = GameObject.Find("Rooms").transform.GetChild(0).gameObject;
-            rooms[1] = GameObject.Find("Rooms").transform.GetChild(1).gameObject;
-            rooms[2] = GameObject.Find("Rooms").transform.GetChild(2).gameObject;
-            rooms[3] = GameObject.Find("Rooms").transform.GetChild(3).gameObject;
-            rooms[4] = GameObject.Find("Rooms").transform.GetChild(4).gameObject;
-            rooms[5] = GameObject.Find("Rooms").transform.GetChild(5).gameObject;
+            rooms[0] = GameManager.instance.currentRooms.transform.GetChild(0).gameObject;
+            rooms[1] = GameManager.instance.currentRooms.transform.GetChild(1).gameObject;
+            rooms[2] = GameManager.instance.currentRooms.transform.GetChild(2).gameObject;
+            rooms[3] = GameManager.instance.currentRooms.transform.GetChild(3).gameObject;
+            rooms[4] = GameManager.instance.currentRooms.transform.GetChild(4).gameObject;
+            rooms[5] = GameManager.instance.currentRooms.transform.GetChild(5).gameObject;
             switch (dRS)
             {
                 case DungeonRoomSel.R0:

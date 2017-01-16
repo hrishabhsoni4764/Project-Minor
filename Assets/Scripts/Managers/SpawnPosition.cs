@@ -13,14 +13,14 @@ public class SpawnPosition : MonoBehaviour {
 	void Start () {
 
         AltWeaponOnScreen altOS = GameManager.instance.altOS;
-        GameObject player = GameObject.FindObjectOfType<ThirdPersonController>().gameObject;
+        GameObject player = GameManager.instance.tpc.gameObject;
 
         if (SceneManager.GetActiveScene().name == "OutsideWorld")
         {
-            Transform d0 = GameObject.Find("GameSpawn").transform;
-            Transform d1 = GameObject.Find("Dungeon1Spawn").transform;
-            Transform d2 = GameObject.Find("Dungeon2Spawn").transform;
-            Transform d3 = GameObject.Find("Dungeon3Spawn").transform;
+            Transform d0 = GameManager.instance.spawnpoints[0].transform;
+            Transform d1 = GameManager.instance.spawnpoints[1].transform;
+            Transform d2 = GameManager.instance.spawnpoints[2].transform;
+            Transform d3 = GameManager.instance.spawnpoints[3].transform;
 
             if (dungeonsBeaten == 1)
             {

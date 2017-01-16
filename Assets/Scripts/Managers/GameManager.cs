@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
 
     [Header("-Prefabs-")]
     public GameObject fadeScreen;
+    public GameObject currentRooms;
+    public GameObject[] spawnpoints;
     [Header("-Scripts-")]
     public Health health;
     public ThirdPersonController tpc;
