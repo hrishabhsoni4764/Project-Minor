@@ -10,7 +10,7 @@ public class Raycasts : MonoBehaviour {
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask movingPlatformLayer;
 
-    /*[HideInInspector]*/ public bool isGrounded;
+    [HideInInspector] public bool isGrounded;
 
     void Start() {
         movingP = GameManager.instance.movingP;
@@ -21,6 +21,7 @@ public class Raycasts : MonoBehaviour {
     void Update()
     {
         RaycastHit hit;
+
         if (!GetComponent<PushBlock>())
         {
             //MovingPlatform//
@@ -34,7 +35,7 @@ public class Raycasts : MonoBehaviour {
             }
 
             //KillBox//
-            if (Physics.Raycast(transform.position + new Vector3(0.5f, 0f, 0f), Vector3.down, out hit, 1.5f, groundLayer) || Physics.Raycast(transform.position + new Vector3(-0.5f, 0f, 0f), Vector3.down, out hit, 1.5f, groundLayer) || Physics.Raycast(transform.position + new Vector3(0f, 0f, 0.5f), Vector3.down, out hit, 1.5f, groundLayer) || Physics.Raycast(transform.position + new Vector3(0f, 0f, -0.5f), Vector3.down, out hit, 1.5f, groundLayer))
+            if (Physics.SphereCast(transform.position, transform.GetComponent<CapsuleCollider>().radius, Vector3.down, out hit, 1, groundLayer))
             {
                 isGrounded = true;
                 tpc.canMove = true;
@@ -50,17 +51,18 @@ public class Raycasts : MonoBehaviour {
                 isGrounded = false;
             }
         }
-        else {
+        else
+        {
             //PushBlockParenting//
-            if (transform.parent != tpc.transform)
+            if (transform.parent.parent != tpc.transform)
             {
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, 1, movingPlatformLayer))
                 {
-                    transform.SetParent(hit.transform);
+                    transform.parent.SetParent(hit.transform);
                 }
                 else
                 {
-                    transform.SetParent(null);
+                    transform.parent.SetParent(GetComponent<PushBlock>().originParent.transform);
                 }
             }
         }
@@ -76,9 +78,18 @@ public class Raycasts : MonoBehaviour {
         fadeScreenAnim.SetInteger("fadeScreen", 1);
         yield return new WaitForSeconds(0.6f);
         fadeScreenAnim.SetInteger("fadeScreen", 0);
-        //yield return new WaitForSeconds(1);
         Vector3 delta = (lastPosition - transform.position).normalized;
         delta.y = 0;
         transform.position = lastPosition + delta * 3f;
+    }
+
+    void OnDrawGizmos()
+    {
+        if (GetComponent<PushBlock>())
+        {
+            //Gizmos.DrawSphere(transform.position, 0.5f);
+            //Gizmos.DrawCube(transform.position, new Vector3(1f, .5f, 1f));
+            //Gizmos.DrawLine(transform.position, transform.position + Vector3.down);
+        }
     }
 }

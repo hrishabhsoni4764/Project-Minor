@@ -6,16 +6,16 @@ public class PushBlock : MonoBehaviour {
 
     private GameObject buttonInterface;
     private AltWeapons altweapons;
+    private PlayerBehaviour playerB;
     private ThirdPersonController tpc;
-    private Rigidbody rb;
 
     public GameObject originParent;
 
 	void Start () {
         buttonInterface = GameManager.instance.altOS.gameObject;
         altweapons = GameManager.instance.altWeapons;
+        playerB = GameManager.instance.playerB;
         tpc = GameManager.instance.tpc;
-        rb = GetComponent<Rigidbody>();
 	}
 
     void Update() {
@@ -24,6 +24,7 @@ public class PushBlock : MonoBehaviour {
                 transform.parent.SetParent(originParent.transform);
             }
             altweapons.swordAndShieldShowing = true;
+            playerB.canUseShieldAndSword = true;
             altweapons.canUseAltWeapon = true;
             tpc.canLookAround = true;
             tpc.defaultSpeed = 7f;
@@ -38,9 +39,10 @@ public class PushBlock : MonoBehaviour {
             {
                 transform.parent.SetParent(other.transform);
                 altweapons.swordAndShieldShowing = false;
+                playerB.canUseShieldAndSword = false;
                 altweapons.canUseAltWeapon = false;
-                other.GetComponent<ThirdPersonController>().canLookAround = false;
-                other.GetComponent<ThirdPersonController>().defaultSpeed = 4f;
+                tpc.canLookAround = false;
+                tpc.defaultSpeed = 4f;
             }
         }
     }
