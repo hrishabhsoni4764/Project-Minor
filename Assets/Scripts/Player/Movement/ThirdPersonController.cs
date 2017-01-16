@@ -5,8 +5,8 @@ public class ThirdPersonController : MonoBehaviour {
 
     [HideInInspector] public float defaultSpeed;
     [HideInInspector] public float currentSpeed;
-    [HideInInspector] public bool canMove = true;
-    [HideInInspector] public bool canLookAround = true;
+    /*[HideInInspector]*/ public bool canMove = true;
+    /*[HideInInspector]*/ public bool canLookAround = true;
 
 
     public float turnSpeed = 3f;

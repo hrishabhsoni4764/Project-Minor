@@ -10,7 +10,7 @@ public class Raycasts : MonoBehaviour {
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask movingPlatformLayer;
 
-    [HideInInspector] public bool isGrounded;
+    /*[HideInInspector]*/ public bool isGrounded;
 
     void Start() {
         movingP = GameManager.instance.movingP;
