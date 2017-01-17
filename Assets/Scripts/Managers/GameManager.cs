@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 
     [Header("-Prefabs-")]
     public GameObject fadeScreen;
+    public GameObject roomNameObj;
     public GameObject currentRooms;
     public GameObject[] spawnpoints;
     [Header("-Scripts-")]

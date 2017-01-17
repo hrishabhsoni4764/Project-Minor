@@ -22,6 +22,7 @@ public class EnterTransitionTrigger : MonoBehaviour {
     [Header("-Text Input-")]
     [Tooltip("Indicator for the game to know to which room you are going")] public int roomSelectNum;
     [Tooltip("Name of scene you transition to")] public string transitionTo;
+    [Tooltip("Name of room you move to")] public string roomName;
 
     void Start() {
         tpc = GameManager.instance.tpc;
@@ -87,6 +88,7 @@ public class EnterTransitionTrigger : MonoBehaviour {
     IEnumerator EnterHouseDelay()
     {
         Animator fadeScreenAnim = GameManager.instance.fadeScreen.GetComponent<Animator>();
+        GameObject roomNameObj = GameManager.instance.roomNameObj;
         fadeScreenAnim.SetInteger("fadeScreen", 1);
         yield return new WaitForSeconds(0.6f);
         fadeScreenAnim.SetInteger("fadeScreen", 0);
@@ -99,6 +101,11 @@ public class EnterTransitionTrigger : MonoBehaviour {
             sManager.activate = true;
             sManager.dRS = (DungeonRoomSel)roomSelectNum;
             tpc.transform.position = posToMoveTo.position;
+            yield return new WaitForSeconds(0.6f);
+            roomNameObj.GetComponentInChildren<Text>().text = roomName;
+            roomNameObj.GetComponent<Animator>().SetInteger("roomNameInt", 1);
+            yield return new WaitForSeconds(2f);
+            roomNameObj.GetComponent<Animator>().SetInteger("roomNameInt", 0);
             tpc.canMove = true;
         }
     }
