@@ -34,7 +34,4 @@ public class GameManager : MonoBehaviour {
     public CameraPanTrigger cpt;
     public DungeonRooms sManager;
     public UIKey uiKey;
-    void Awake()
-    {
-    }
 }
