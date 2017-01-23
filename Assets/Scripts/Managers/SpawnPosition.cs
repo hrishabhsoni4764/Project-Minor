@@ -11,7 +11,6 @@ public class SpawnPosition : MonoBehaviour {
 
 
 	void Start () {
-
         AltWeaponOnScreen altOS = GameManager.instance.altOS;
         GameObject player = GameManager.instance.tpc.gameObject;
 
@@ -60,6 +59,10 @@ public class SpawnPosition : MonoBehaviour {
             else if (dungeonsBeaten == 3)
             {
                 altOS.altweaponsOnScreen = AltWeaponsOnScreen.Three;
+            }
+            else
+            {
+                altOS.altweaponsOnScreen = AltWeaponsOnScreen.Zero;
             }
         }
     }
