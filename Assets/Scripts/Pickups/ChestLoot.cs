@@ -94,8 +94,8 @@ public class ChestLoot : MonoBehaviour {
         cameraM.panPause = panPause;
         cameraM.cameraState = CameraState.Pan;
         yield return new WaitForSeconds(animPause);
-        objectToTrigger.GetComponent<DoorEvent>().active = true;
         objectToTrigger.GetComponent<DoorEvent>().posToMoveTo = targetMove;
+        objectToTrigger.GetComponent<DoorEvent>().active = true;
     }
 
     IEnumerator TextDelay(string lootText) {

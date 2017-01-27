@@ -30,6 +30,8 @@ public class SwitchEvent : MonoBehaviour {
     [Header("-Prefabs-")]
     public GameObject objectToTrigger;
 
+    public bool somenelse;
+
     void Start() {
         cameraM = GameManager.instance.cameraM;
     }
@@ -63,7 +65,14 @@ public class SwitchEvent : MonoBehaviour {
                                 {
                                     StartCoroutine("WaitForPan");
                                 }
-                                objectToTrigger.GetComponent<DoorEvent>().active = true;
+                                if (!somenelse)
+                                {
+                                    objectToTrigger.GetComponent<DoorEvent>().active = true;
+                                }
+                                else
+                                {
+                                    objectToTrigger.GetComponent<DoorEvent>().active2 = true;
+                                }
                             }
                         }
                     }

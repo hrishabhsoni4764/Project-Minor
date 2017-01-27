@@ -3,8 +3,8 @@ using System.Collections;
 
 public class DoorEvent : MonoBehaviour {
 
-    [HideInInspector] public bool active;
-    public Transform posToMoveTo;
+    [HideInInspector] public bool active, active2;
+    public Transform posToMoveTo, posToMoveTo2;
     private float transitionSpeed = 0.05f;
 
     private float journeyLength;
@@ -23,5 +23,12 @@ public class DoorEvent : MonoBehaviour {
             float fracJourney = distCovered / journeyLength;
             transform.position = Vector3.Lerp(transform.position, posToMoveTo.position, fracJourney);
         }
-	}
+
+        if (active2)
+        {
+            float distCovered = (Time.time - startTime) * transitionSpeed;
+            float fracJourney = distCovered / journeyLength;
+            transform.position = Vector3.Lerp(transform.position, posToMoveTo2.position, fracJourney);
+        }
+    }
 }
