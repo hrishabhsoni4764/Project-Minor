@@ -5,7 +5,8 @@ using UnityEngine;
 public class SpinnyBlades : MonoBehaviour {
 
     private PlayerBehaviour playerB;
-    private bool canHurt = true;
+    [HideInInspector] public bool canHurt = true;
+    [HideInInspector] public bool active;
 
 	void Start () {
         playerB = GameManager.instance.playerB;
@@ -16,11 +17,15 @@ public class SpinnyBlades : MonoBehaviour {
 	}
 
     void OnTriggerStay(Collider other) {
-        if (other.GetComponent<ThirdPersonController>() && !other.GetComponent<SphereCollider>() && canHurt) {
-            playerB.curHealth -= 1;
-            playerB.PlayerBounceBack(this.transform, 10f);
-            canHurt = false;
-            StartCoroutine("GetHurtDelay");
+        if (active)
+        {
+            if (other.GetComponent<ThirdPersonController>() && !other.GetComponent<SphereCollider>() && canHurt)
+            {
+                playerB.curHealth -= 1;
+                playerB.PlayerBounceBack(this.transform, 10f);
+                canHurt = false;
+                StartCoroutine("GetHurtDelay");
+            }
         }
     }
 

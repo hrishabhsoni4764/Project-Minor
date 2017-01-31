@@ -8,7 +8,7 @@ public class SpinCilinder : MonoBehaviour {
     private bool canHit = true;
 
 	void Start () {
-        spinnyBoss = GameManager.instance.spinnyBoss;
+        spinnyBoss = GetComponent<SpinnyBoss>();
 	}
 	
     void OnTriggerStay(Collider other) {
@@ -24,7 +24,7 @@ public class SpinCilinder : MonoBehaviour {
     }
 
     IEnumerator DamageTimer() {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
         canHit = true;
     }
 }

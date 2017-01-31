@@ -21,23 +21,12 @@ public class AttackBehaviour : MonoBehaviour {
             other.GetComponent<GrassBehaviour>().Cutgrass();
             StartCoroutine("GrassDelay", other.gameObject);
         }
-        else if (other.GetComponent<BossEnemyBehaviour>().GetComponentInChildren<CapsuleCollider>() && other.GetComponent<BossEnemyBehaviour>().bossCanHurt && other.GetComponent<BossEnemyBehaviour>().isVulnarable) {
-            other.GetComponent<BossEnemyBehaviour>().bossCanHurt = false;
-            other.GetComponent<BossEnemyBehaviour>().health -= 1;
-            StartCoroutine("BossDamageDelay", other.gameObject);
-        }
     }
 
 
     IEnumerator DamageDelay() {
         yield return new WaitForSeconds(0.4f);
         enemyCanHurt = true;
-    }
-
-    IEnumerator BossDamageDelay(GameObject other)
-    {
-        yield return new WaitForSeconds(0.4f);
-        other.GetComponent<BossEnemyBehaviour>().bossCanHurt = true;
     }
 
     IEnumerator GrassDelay(GameObject other)

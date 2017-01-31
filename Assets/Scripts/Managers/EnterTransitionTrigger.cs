@@ -102,11 +102,11 @@ public class EnterTransitionTrigger : MonoBehaviour {
             sManager.dRS = (DungeonRoomSel)roomSelectNum;
             tpc.transform.position = posToMoveTo.position;
             yield return new WaitForSeconds(0.6f);
+            tpc.canMove = true;
             roomNameObj.GetComponentInChildren<Text>().text = roomName;
             roomNameObj.GetComponent<Animator>().SetInteger("roomNameInt", 1);
             yield return new WaitForSeconds(2f);
             roomNameObj.GetComponent<Animator>().SetInteger("roomNameInt", 0);
-            tpc.canMove = true;
         }
     }
 }

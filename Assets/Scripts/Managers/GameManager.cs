@@ -34,5 +34,6 @@ public class GameManager : MonoBehaviour {
     public CameraPanTrigger cpt;
     public DungeonRooms sManager;
     public UIKey uiKey;
-    public SpinnyBoss spinnyBoss;
+    //public SpinnyBoss spinnyBoss;
+    //public SpinnyBlades spinnyBlades;
 }

@@ -9,7 +9,7 @@ public class BossVulnarable : MonoBehaviour {
     private SpinnyBoss spinnyBoss;
 
 	void Start () {
-        spinnyBoss = GameManager.instance.spinnyBoss;
+        //spinnyBoss = GameManager.instance.spinnyBoss;
 	}
 	
 	void Update () {
