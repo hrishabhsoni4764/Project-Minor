@@ -21,6 +21,10 @@ public class AttackBehaviour : MonoBehaviour {
             other.GetComponent<GrassBehaviour>().Cutgrass();
             StartCoroutine("GrassDelay", other.gameObject);
         }
+        else if (other.GetComponent<PotBehaviour>())
+        {
+            other.GetComponent<PotBehaviour>().activate = true;
+        }
     }
 
 
