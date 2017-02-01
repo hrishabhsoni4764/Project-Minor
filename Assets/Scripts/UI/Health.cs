@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     private int maxHeartAmount = 5;
     private int healthperheart = 2;
 
-    public int startHearts = 5;
+    public static int startHearts = 6;
     public Image[] healthImages;
     public Sprite[] healthSprites;
         
@@ -16,13 +16,13 @@ public class Health : MonoBehaviour
     {
         playerB = GameManager.instance.playerB;
 
-        playerB.curHealth = maxHeartAmount * healthperheart;
+        playerB.curHealth = startHearts * healthperheart;
         playerB.maxHealth = maxHeartAmount * healthperheart;
         CheckHealthAmount();
     }
 
     void Update() {
-       
+ 
     }
 
     void CheckHealthAmount() {
@@ -67,7 +67,7 @@ public class Health : MonoBehaviour
     }
 
     public void TakeDamage(int amount) {
-        playerB.curHealth += amount;
+        playerB.curHealth -= amount;
         playerB.curHealth = Mathf.Clamp(playerB.curHealth, 0, startHearts * healthperheart);
         UpdateHearts();
     }

@@ -1,24 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHitBox : MonoBehaviour {
+public class PlayerHitBox : MonoBehaviour
+{
 
     private PlayerBehaviour playerB;
     private EnemyBehaviour enemyB;
+    private Health health;
 
-	void Start () {
+    void Start()
+    {
         playerB = GameManager.instance.playerB;
-        enemyB = GetComponent<EnemyBehaviour>();
+        health = GameManager.instance.health;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (enemyB == null) return;
-       
-        if (other == enemyB.GetComponent<CapsuleCollider>() && playerB.shieldIsUp)
+        if (other.GetComponent<RegularEnemyBehaviour>() && other is CapsuleCollider)
         {
-            enemyB.EnemyBounceBack(transform.parent, 10f);
+            if (playerB.shieldIsUp)
+            {
+                other.GetComponent<RegularEnemyBehaviour>().EnemyBounceBack(transform.parent, 7f);
+            }
+            else if (!playerB.shieldIsUp)
+            {
+                health.TakeDamage(1);
+                playerB.PlayerBounceBack(other.transform, 7f);
+            }
         }
-        
     }
 }

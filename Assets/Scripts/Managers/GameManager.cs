@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
     public ThirdPersonController tpc;
     public CameraMovement cameraM;
     public PlayerBehaviour playerB;
+    public RegularEnemyBehaviour enemyB;
     public AltWeaponOnScreen altOS;
     public AltWeapons altWeapons;
     public HookshotController hookshotCtrl;

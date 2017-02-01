@@ -6,9 +6,12 @@ public class AttackBehaviour : MonoBehaviour {
     private bool enemyCanHurt = true;
     public AnimationClip grassDestroyAnim;
 
+    void Start() {
+    }
+
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Enemy") && (other.GetType() == typeof(BoxCollider)) && enemyCanHurt)
+        if (other.CompareTag("Enemy") && other is BoxCollider && enemyCanHurt)
         {
             enemyCanHurt = false;
             EnemyBehaviour enemyB = other.transform.parent.GetComponent<EnemyBehaviour>();
@@ -37,10 +40,5 @@ public class AttackBehaviour : MonoBehaviour {
     {
         yield return new WaitForSeconds(grassDestroyAnim.length);
         other.gameObject.SetActive(false);
-        //int heartSpawnChance = Random.Range(0, 2);
-        //if (heartSpawnChance == 1)
-        //{
-        //    Instantiate(Resources.Load("Prefabs/Pickups/Heart"), other.transform.position, Quaternion.identity);
-        //}
     }
 }

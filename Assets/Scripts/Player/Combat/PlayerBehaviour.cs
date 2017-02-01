@@ -10,16 +10,20 @@ public class PlayerBehaviour : MonoBehaviour {
     [HideInInspector] public bool canUseShieldAndSword = true;
 
     public int curHealth;
+    public int returnHealth;
+    public Transform deathTrans;
 
     private int atkDamage = 1;
     private bool canUseSword;
     private EnemyBehaviour enemyB;
+    private DungeonRooms sManager;
     private AltWeapons altWeapons;
     private Health healthScript;
     private Animator shield;
 
     void Start () {
         enemyB = GetComponent<EnemyBehaviour>();
+        sManager = GameManager.instance.sManager;
         tpc = GameManager.instance.tpc;
         altWeapons = GameManager.instance.altWeapons;
         healthScript = GameManager.instance.health;
@@ -27,38 +31,11 @@ public class PlayerBehaviour : MonoBehaviour {
     }
 	
 	void Update () {
-        if (curHealth <= 0) {
-            curHealth = 0;
-        }
         if (canUseShieldAndSword) {
             ShieldUp();
             Attack();
         }
         Death();
-    }
-
-    void OnTriggerEnter(Collider other) {
-
-        if (enemyB != null && other == enemyB.GetComponent<CapsuleCollider>() && !shieldIsUp)
-        {
-            PlayerBounceBack(enemyB.transform, 10f);
-            healthScript.TakeDamage(1);
-        }
-        else if (other.GetComponent<BossEnemyBehaviour>() && !shieldIsUp && !other.GetComponent<BossEnemyBehaviour>().isVulnarable) {
-            if (other.GetComponent<BossEnemyBehaviour>().health > 5)
-            {
-                PlayerBounceBack(other.GetComponent<BossEnemyBehaviour>().transform, 10f);
-                healthScript.TakeDamage(other.GetComponent<BossEnemyBehaviour>().atkPower);
-            }
-            else {
-                PlayerBounceBack(other.GetComponent<BossEnemyBehaviour>().transform, 10f);
-                healthScript.TakeDamage(other.GetComponent<BossEnemyBehaviour>().atkPower + 1);
-            }
-        } else if (other.GetComponent<BossEnemyBehaviour>() && shieldIsUp && !other.GetComponent<BossEnemyBehaviour>().isVulnarable) {
-            PlayerBounceBack(other.GetComponent<BossEnemyBehaviour>().transform, 10f);
-        } else if (other.CompareTag("RockSlide")) {
-            healthScript.TakeDamage(1);
-        }
     }
 
     void Attack() {
@@ -99,6 +76,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public void Death() {
         if (curHealth <= 0) {
             curHealth = 0;
+            StartCoroutine("DeathDelay");
         }
     }
 
@@ -115,6 +93,23 @@ public class PlayerBehaviour : MonoBehaviour {
     IEnumerator SwordCollider() {
         yield return new WaitForSeconds(swordStrikeAnim.length);
         tpc.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
+    }
+
+    IEnumerator DeathDelay() {
+        tpc.canLookAround = false;
+        tpc.canMove = false;
+        Animator fadeScreenAnim = GameManager.instance.fadeScreen.GetComponent<Animator>();
+        sManager.activate = true;
+        sManager.dRS = DungeonRoomSel.R0;
+        fadeScreenAnim.SetInteger("fadeScreen", 1);
+        yield return new WaitForSeconds(0.6f);
+        fadeScreenAnim.SetInteger("fadeScreen", 0);
+        transform.position = deathTrans.position;
+        curHealth = returnHealth;
+        healthScript.UpdateHearts();
+        transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        tpc.canLookAround = true;
+        tpc.canMove = true;
     }
 }
 

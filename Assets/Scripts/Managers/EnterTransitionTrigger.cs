@@ -50,6 +50,7 @@ public class EnterTransitionTrigger : MonoBehaviour {
                                 uiKey.gotBossKey = false;
                                 tpc.canMove = false;
                                 SpawnPosition.dungeonsBeaten = complete;
+                                Health.startHearts++;
                                 StartCoroutine("EnterHouseDelay");
                             }
                             else

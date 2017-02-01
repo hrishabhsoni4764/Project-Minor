@@ -9,6 +9,8 @@ public class SpawnPosition : MonoBehaviour {
 
     [HideInInspector] public Transform startPos;
 
+    public GameObject[] blocks;
+
 
 	void Start () {
         AltWeaponOnScreen altOS = GameManager.instance.altOS;
@@ -25,12 +27,15 @@ public class SpawnPosition : MonoBehaviour {
             {
                 startPos = d1;
                 player.transform.position = startPos.position;
+                blocks[0].SetActive(true);
                 altOS.altweaponsOnScreen = AltWeaponsOnScreen.One;
             }
             else if (dungeonsBeaten == 2)
             {
                 startPos = d2;
                 player.transform.position = startPos.position;
+                blocks[0].SetActive(true);
+                blocks[1].SetActive(true);
                 altOS.altweaponsOnScreen = AltWeaponsOnScreen.Two;
             }
             else if (dungeonsBeaten == 3)
