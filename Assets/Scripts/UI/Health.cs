@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     private int maxHeartAmount = 5;
     private int healthperheart = 2;
 
-    public static int startHearts = 6;
+    public static int startHearts = 3;
     public Image[] healthImages;
     public Sprite[] healthSprites;
         

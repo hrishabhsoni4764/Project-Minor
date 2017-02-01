@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour {
     public ThirdPersonController tpc;
     public CameraMovement cameraM;
     public PlayerBehaviour playerB;
-    public RegularEnemyBehaviour enemyB;
     public AltWeaponOnScreen altOS;
     public AltWeapons altWeapons;
     public HookshotController hookshotCtrl;
@@ -35,6 +34,4 @@ public class GameManager : MonoBehaviour {
     public CameraPanTrigger cpt;
     public DungeonRooms sManager;
     public UIKey uiKey;
-    //public SpinnyBoss spinnyBoss;
-    //public SpinnyBlades spinnyBlades;
 }
